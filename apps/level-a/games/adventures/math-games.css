@@ -1,0 +1,93 @@
+.in-game:is([data-game=pattern],[data-game=collect],[data-game=arithmetic]) .stage{padding:0;overflow:hidden}
+.math-play{width:100%;height:100%;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:10px;padding:16px;background-size:cover;background-position:center}
+.pattern-world{background-image:url('assets/pattern-workshop.png')}.collect-world{background-image:url('assets/count-orchard.png')}.bakery-world{background-image:url('assets/add-bakery.png')}
+.math-banner{padding:8px 18px;background:#fff9e9ed;border:2px solid white;border-radius:18px;color:#546045;font-weight:bold;text-align:center;font-size:18px}
+.goal-card{display:flex;align-items:center;justify-content:center;gap:12px;min-height:52px}.goal-card>svg{width:45px;height:45px}.goal-number{font-size:34px}
+.quantity-dots{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;max-width:105px}.quantity-dots i{display:block;width:13px;height:13px;background:#668950;border-radius:50%}
+.pattern-row{display:flex;gap:8px;width:min(100%,800px);justify-content:center;padding:18px 10px;background:#fff3dbaa;border-radius:22px;box-shadow:0 5px 0 #9b795744}
+.pattern-fixed,.pattern-slot{flex:1;aspect-ratio:1;max-width:110px;min-width:0;min-height:0;display:grid;place-items:center;padding:3px;background:#fffdf1;border:3px solid #b5976a;border-radius:15px;font-size:32px;color:#93714f}
+.pattern-row svg{display:block;width:100%;height:100%}.pattern-slot{border-style:dashed;cursor:pointer}.pattern-slot.active-slot{box-shadow:0 0 0 3px #eaba55}.pattern-slot.filled{border-style:solid;border-color:#76a06c}
+.pattern-supply{display:flex;gap:25px}.pattern-supply button{width:95px;padding:5px;border:3px solid #fff;border-radius:20px;background:#fff3de;box-shadow:0 5px 0 #8d70484d;cursor:grab;touch-action:none;color:#604f3a}.pattern-supply button svg{width:65px;height:65px;display:block;margin:auto}.pattern-supply small{font-size:13px}.pattern-supply [aria-pressed=true]{border-color:#8a69ad;transform:translateY(-4px)}
+.fruit-patch{display:flex;justify-content:center;align-items:center;gap:10px;min-height:90px;width:100%;padding:10px;background:#f4ffe33b;border-radius:40px}
+.math-object{width:68px;height:68px;min-width:0;min-height:0;padding:0;border:0;background:transparent;cursor:grab;touch-action:none;filter:drop-shadow(0 4px 2px #39301744);display:inline-block;flex-shrink:0}.math-object svg{display:block;width:100%;height:100%}.math-object:focus-visible{outline:3px solid #855ba5;border-radius:50%}.math-object:active{transform:scale(1.08)}
+.collect-basket{width:min(95%,440px);min-height:110px;padding:8px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:20px 20px 40px 40px;background:repeating-linear-gradient(0deg,#c99656ee 0 8px,#ae783bee 9px 11px);border:5px solid #e1b675;color:#fffdf3;box-shadow:0 6px 0 #76533455}.basket-fruit{display:flex;flex-wrap:wrap;justify-content:center;min-height:50px}.basket-fruit .math-object{width:57px;height:57px}
+.math-action{background:#567d67;color:white;border:3px solid white;border-radius:17px;padding:10px 22px;font:inherit;font-weight:bold;cursor:pointer;box-shadow:0 4px 0 #385a4a55;min-height:44px}.math-action:disabled{background:#6e947d;cursor:default}
+.math-modes{display:flex;gap:8px;padding:4px;background:#fff7e9eb;border-radius:15px}.math-modes button{border:2px solid transparent;border-radius:12px;background:white;padding:7px 16px;font:inherit;color:#725975;cursor:pointer}.math-modes [aria-pressed=true]{border-color:#9a76ad;background:#f4e7fa}
+.bakery-zones{display:flex;gap:20px;width:min(100%,750px);justify-content:center}.cookie-zone{width:50%;min-height:160px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:8px;color:#755936;border:4px solid white;background:#fff3dce8;border-radius:30px;box-shadow:0 7px 0 #9d744633}.cookie-box{border-radius:12px;background:#d8b68ee8}.cookie-items{display:flex;justify-content:center;flex-wrap:wrap;min-height:60px}.fixed-cookie{cursor:default;filter:none}.cookie-zone .math-object{width:62px;height:62px}
+.math-drag-ghost{position:fixed;z-index:9999;width:75px;height:75px;padding:0;border:0;background:transparent;transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 8px 5px #0005)}.math-drag-ghost svg{width:100%;height:100%}.math-drag-ghost small{display:none}
+.math-wiggle{animation:math-wiggle .3s}@keyframes math-wiggle{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+@media(max-width:600px){.math-play{padding:10px;gap:7px}.math-banner{font-size:15px;padding:7px 12px}.pattern-row{gap:5px;padding:14px 6px}.pattern-fixed,.pattern-slot{border-width:2px;border-radius:10px}.fruit-patch{gap:2px;padding:5px}.fruit-patch .math-object{width:60px;height:60px}.bakery-zones{gap:8px}.cookie-zone{padding:8px;min-height:150px;font-size:13px}.cookie-zone .math-object{width:48px;height:48px}.math-modes button{font-size:14px}.basket-fruit .math-object{width:50px;height:50px}}
+@media(max-height:550px) and (min-width:601px){.math-play{gap:4px;padding:5px}.pattern-row{max-width:500px;padding:6px}.pattern-supply button{width:70px}.pattern-supply button svg{width:40px;height:40px}.math-banner{padding:3px 12px;font-size:14px}.goal-card{min-height:30px}.goal-card>svg{width:25px;height:25px}.fruit-patch{min-height:50px;padding:0}.fruit-patch .math-object{width:42px;height:42px}.collect-basket{min-height:65px;padding:0}.basket-fruit{min-height:30px}.basket-fruit .math-object{width:35px;height:35px}.cookie-zone{min-height:80px;padding:4px}.cookie-zone .math-object{width:38px;height:38px}.cookie-items{min-height:38px}.math-modes button{padding:2px 10px}.math-action{padding:4px 15px;min-height:36px}}
+@media(prefers-reduced-motion:reduce){.math-wiggle{animation:none}}
+
+/* Solid ceramic dish and inset metal baking tray. */
+.bakery-zones{align-items:center;isolation:isolate;padding:10px 5px 24px}
+.bakery-world .cookie-zone{position:relative;min-height:190px;overflow:visible}
+.bakery-world .serving-plate{border:7px solid #fffdf5;border-radius:50%;padding:25px 15px;background:radial-gradient(ellipse at 45% 35%,#fffefa 0%,#f1ebdc 68%,#d5ddd7 70%,#fafbf4 77%,#d4ddd7 100%);box-shadow:inset 0 0 0 3px #d0dcd5,inset 0 6px 8px #ffffff,0 7px 0 #a9b7af,0 13px 12px #573e4655;z-index:2}
+.serving-plate .cookie-items{align-content:center;gap:0;position:relative;z-index:2}
+.bakery-world .baking-tray{border:8px solid #c7d5d8;border-radius:19px;padding:20px 12px;background:linear-gradient(135deg,#92a7ad,#d8e2e2 45%,#a5b8bd);box-shadow:inset 0 0 0 3px #718b94,inset 0 8px 13px #56717b66,0 6px 0 #6d8791,0 13px 13px #493b4455;color:#354e59}
+.baking-tray::before,.baking-tray::after{content:'';position:absolute;top:38%;width:9px;height:43px;background:#78949f;border:3px solid #dce6e8;border-radius:7px;box-shadow:0 3px 0 #536e79}
+.baking-tray::before{left:-13px}.baking-tray::after{right:-13px}
+.bakery-world .takeaway-box{border:6px solid #d7ad75;background:linear-gradient(145deg,#c7985e,#f0cd91);box-shadow:inset 0 8px 12px #79542f55,0 7px 0 #a27543,0 14px 15px #65422d44;border-radius:10px}
+.serving-hands{position:absolute;inset:0;pointer-events:none;z-index:4}
+.serve-hand{position:absolute;width:66px;height:106px;bottom:-51px;filter:drop-shadow(0 4px 3px #64463240);animation:reach-for-plate .65s cubic-bezier(.2,.7,.3,1) both;transform-origin:50% 100%}
+.hand-left{left:8px;--hand-turn:-24deg;--hand-flip:1}.hand-right{right:8px;--hand-turn:24deg;--hand-flip:-1}
+.is-served .serving-plate{animation:carry-plate-away 1.8s .55s cubic-bezier(.45,0,.6,1) both;pointer-events:none}
+@keyframes reach-for-plate{from{opacity:0;transform:translateY(85px) rotate(var(--hand-turn)) scaleX(var(--hand-flip))}35%{opacity:1}to{opacity:1;transform:translateY(-22px) rotate(var(--hand-turn)) scaleX(var(--hand-flip))}}
+@keyframes carry-plate-away{0%{transform:translateY(0)}18%{transform:translateY(-12px) scale(1.03)}100%{transform:translateY(110vh) scale(1.03)}}
+@keyframes serve-fade{to{opacity:0;visibility:hidden}}
+@media(max-width:600px){.bakery-world .cookie-zone{min-height:180px}.bakery-world .serving-plate{padding:22px 9px;border-width:5px}.bakery-world .baking-tray{padding:17px 8px;border-width:6px}.bakery-zones{gap:17px}.cookie-zone .math-object{width:44px;height:44px}.serve-hand{width:53px;height:85px;bottom:-42px}}
+@media(max-height:550px) and (min-width:601px){.bakery-world .cookie-zone{min-height:112px;padding:10px 20px}.bakery-zones{padding-bottom:16px}.serve-hand{width:48px;height:77px;bottom:-32px}}
+@media(prefers-reduced-motion:reduce){.is-served .serving-plate{animation:serve-fade .2s .2s forwards}.serve-hand{animation:none;transform:rotate(var(--hand-turn)) scaleX(var(--hand-flip))}}
+
+.apple-progress{display:flex;align-items:center;justify-content:center;gap:3px}.apple-progress-item{display:block;width:32px;height:36px;opacity:.25;filter:grayscale(1)}.apple-progress-item svg{display:block;width:100%;height:100%}.apple-progress-item.collected{opacity:1;filter:none}
+@media(max-width:380px){.collect-world .goal-card{gap:7px}.apple-progress-item{width:26px;height:31px}}
+
+/* Align the drop area with the basket painted into the cover-sized scene. */
+.collect-world{position:relative}
+.collect-world .goal-card{position:absolute;top:5%;left:50%;transform:translateX(-50%);white-space:nowrap}
+.collect-world .fruit-patch{position:absolute;top:29%;left:0;background:none}
+.collect-world .collect-basket{position:absolute;left:50%;top:calc(50% + var(--orchard-height)*.135);transform:translateX(-50%);width:calc(var(--orchard-width)*.35);height:calc(var(--orchard-height)*.22);min-height:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;justify-content:flex-start}
+.collect-world .basket-fruit{width:86%;height:45%;min-height:0;align-content:center;align-items:center;flex-wrap:nowrap;padding-top:4%}
+.collect-world .basket-fruit .math-object{width:20%;max-width:62px;height:auto;aspect-ratio:1;flex-shrink:1}
+.collect-world .collect-basket strong{position:absolute;top:70%;font-size:13px;text-shadow:0 1px 3px #493014,0 0 5px #493014}
+.collect-world .math-action{position:absolute;bottom:2%;left:50%;transform:translateX(-50%);white-space:nowrap}
+
+.collect-world{background-image:url('assets/count-orchard-empty.png')}
+.collect-world .collect-basket{isolation:isolate}
+.basket-art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;filter:drop-shadow(0 5px 3px #50371440)}
+.collect-world .basket-fruit{position:relative;z-index:1}
+.collect-world.basket-sent .collect-basket{animation:carry-basket-away 1.8s .55s cubic-bezier(.45,0,.6,1) both;pointer-events:none;z-index:5}
+.collect-basket .serve-hand{bottom:-43px}
+@keyframes carry-basket-away{0%{transform:translateX(-50%) translateY(0)}18%{transform:translateX(-50%) translateY(-15px) scale(1.03)}100%{transform:translateX(-50%) translateY(110vh) scale(1.03)}}
+@media(prefers-reduced-motion:reduce){.collect-world.basket-sent .collect-basket{animation:serve-fade .2s .2s forwards}}
+
+/* Apples stay at their own branches when other fruit is picked. */
+.collect-world .fruit-patch{inset:0;width:100%;height:55%;padding:0;min-height:0;display:block;pointer-events:none}
+.collect-world .tree-apple{position:absolute;width:clamp(44px,7vw,68px);height:auto;aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:auto;cursor:grab}
+.collect-world .tree-apple:active{transform:translate(-50%,-50%) scale(1.08)}
+.collect-world .apple-0{left:13%;top:24%}.collect-world .apple-1{left:24%;top:47%}.collect-world .apple-2{left:9%;top:76%}.collect-world .apple-3{left:80%;top:29%}.collect-world .apple-4{left:90%;top:65%}
+.collect-world .goal-card{z-index:2;pointer-events:none}.collect-world .math-action{z-index:6;touch-action:manipulation}
+
+/* Drag previews use generated PNGs as well as vector pieces. */
+.math-drag-ghost{overflow:hidden;min-width:0;min-height:0;max-width:90px;max-height:90px;box-sizing:border-box}
+.math-drag-ghost>img,.math-drag-ghost>svg{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;pointer-events:none;user-select:none}
+
+/* Reserve a real footer row for Serve; flex shrink must not push it out. */
+.bakery-world{box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;justify-items:center;align-items:center;padding:10px 12px 14px;gap:6px}
+.bakery-world .math-modes,.bakery-world .goal-card{min-height:0;margin:0}
+.bakery-world .bakery-zones{box-sizing:border-box;height:100%;min-height:0;padding:8px 5px 16px;overflow:auto;align-items:center}
+.bakery-world .cookie-zone{box-sizing:border-box;min-height:150px;max-height:250px;height:100%;flex-shrink:0}
+.bakery-world .math-action{position:relative;align-self:end;min-height:46px;margin:0 0 4px;flex-shrink:0;z-index:6}
+@media(max-width:600px){
+ .bakery-world{padding:7px 8px 12px;gap:5px}
+ .bakery-world .goal-card{padding:5px 12px}
+ .bakery-world .math-modes button{min-height:40px;padding:5px 12px}
+ .bakery-world .serving-plate{padding:12px 6px}
+ .bakery-world .baking-tray{padding:12px 6px}
+ .bakery-world .cookie-zone{min-height:142px;font-size:12px}
+ .bakery-world .cookie-items{min-height:0}
+ .bakery-world .cookie-zone .math-object{width:40px;height:40px}
+}
+
+.bakery-world .cookie-zone{width:0;min-width:0;flex:1 1 0}.bakery-world .bakery-zones{overflow-x:hidden}

@@ -1,0 +1,19 @@
+body[data-game=coloring] .paint-scene{position:relative;isolation:isolate;overflow:hidden}
+.paint-motion-world{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none;background:#d2ecbd}
+.paint-motion-backdrop{position:absolute;inset:0;z-index:0;pointer-events:none}
+.paint-motion-object{position:absolute;filter:drop-shadow(0 7px 4px #342b3440);transform-origin:50% 75%;will-change:transform}
+.paint-motion-object[data-motion=flip],.paint-motion-object[data-motion=spin],.paint-motion-object[data-motion=fly]{transform-origin:50% 50%}
+.paint-motion-object canvas{pointer-events:none;cursor:default}
+.paint-motion-sparkle{position:absolute;z-index:3;font-size:clamp(17px,3vw,34px);text-shadow:0 2px 3px #9a6b5140;opacity:0}
+.paint-motion-effect{position:absolute;z-index:1;pointer-events:none;opacity:0;display:block}
+.paint-motion-effect--water{width:clamp(5px,.8vw,10px);height:clamp(8px,1.2vw,15px);border-radius:65% 35% 60% 40%;background:radial-gradient(circle at 35% 25%,#fff 0 10%,#b8f3ff 20%,#4cb6ee 65%,#2689c3);box-shadow:0 1px 2px #0f7dad50}
+.paint-motion-effect--steam{width:clamp(12px,2vw,25px);height:clamp(14px,2.4vw,30px);border-radius:50%;background:radial-gradient(ellipse,#fffef6b0,#fffef600 70%);filter:blur(1px)}
+.paint-motion-effect--pollen{width:clamp(4px,.65vw,8px);height:clamp(4px,.65vw,8px);border-radius:50%;background:radial-gradient(circle at 30% 25%,#fff6b7,#ffc34b 70%);box-shadow:0 0 5px #ffe67170}
+.paint-motion-effect--rays{width:clamp(8px,1.2vw,15px);height:clamp(8px,1.2vw,15px);border-radius:50%;background:radial-gradient(circle,#fff5b3,#ffd76270 50%,#ffdc6e00 75%)}
+.paint-motion-effect--zzz{color:#6c65a3;font:bold clamp(12px,1.8vw,22px) sans-serif;text-shadow:0 1px 1px #fff}
+.paint-motion-effect--music{color:#7861bd;font:bold clamp(16px,2.4vw,30px) sans-serif;text-shadow:0 2px 1px #fff,0 3px 4px #7a578040}
+body[data-game=coloring] .paint-is-moving{cursor:default}
+body[data-game=coloring] .paint-palette button:disabled{cursor:default;opacity:.65}
+body[data-game=coloring] .paint-tools [data-finish]{min-width:122px}
+@media(max-width:600px){body[data-game=coloring] .paint-tools{flex-wrap:wrap}body[data-game=coloring] .paint-status{min-width:90px}}
+@media(prefers-reduced-motion:reduce){.paint-motion-sparkle,.paint-motion-effect{display:none}.paint-motion-object{will-change:auto}}

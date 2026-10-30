@@ -1,0 +1,47 @@
+/* The C echo pads group spellings by audible sound, with whole-picture examples. */
+.theme-nature .c-vowel-echo .c-vowel-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 210px;
+  padding: 14px 12px;
+}
+.theme-nature .c-vowel-echo .c-vowel-examples {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.theme-nature .c-vowel-echo .c-vowel-examples img {
+  display: block;
+  width: 100%;
+  height: 112px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 3px rgba(30, 58, 95, .16));
+}
+.theme-nature .c-vowel-echo .c-vowel-label {
+  font-size: clamp(1.3rem, 3vw, 2.15rem);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.theme-nature .c-vowel-echo .beats { gap: 8px; margin-inline: 0; }
+.theme-nature .c-vowel-echo .beat {
+  flex: 0 1 60px;
+  width: 60px;
+  min-width: 0;
+  height: 54px;
+  font-size: .85rem;
+  line-height: 1.1;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .theme-nature .c-vowel-echo .c-vowel-pad { min-height: 150px; padding: 10px 7px; gap: 9px; }
+  .theme-nature .c-vowel-echo .c-vowel-examples { gap: 3px; }
+  .theme-nature .c-vowel-echo .c-vowel-examples img { height: 76px; }
+  .theme-nature .c-vowel-echo .c-vowel-label { font-size: clamp(1.05rem, 4.2vw, 1.5rem); }
+  .theme-nature .c-vowel-echo .beat { flex-basis: 54px; height: 48px; font-size: .76rem; }
+}

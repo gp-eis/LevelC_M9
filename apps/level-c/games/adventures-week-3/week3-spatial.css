@@ -1,0 +1,35 @@
+/* Resting-place routes keep the complete play board large on both screen shapes. */
+body[data-game=connecting] #stage,body[data-game=maze] #stage{padding:0;background:#f1dfb5;overflow:hidden}
+body[data-game=connecting] .connect-players,body[data-game=connecting] .connect-footer{background:#fff4dc}
+body[data-game=connecting] .connect-players button{box-shadow:0 4px #c6b79455;background:linear-gradient(#fff,#eaf8f5)}
+body[data-game=connecting] .connect-players button[aria-pressed=true]{background:linear-gradient(#fff6d6,#f3d99c)}
+body[data-game=connecting] .connect-start image,body[data-game=connecting] [data-end] image{filter:drop-shadow(0 5px 2px #4a523f55)}
+body[data-game=connecting] [data-end]{cursor:pointer}
+body[data-game=maze] .maze-wrap{display:grid;grid-template-rows:62px minmax(0,1fr);height:100%;min-height:0;width:100%}
+body[data-game=maze] .maze-picker{display:flex;justify-content:center;gap:12px;align-items:center;padding:5px;background:#fff4dc}
+body[data-game=maze] .maze-picker button{display:flex;gap:7px;align-items:center;justify-content:center;padding:3px 14px;border:3px solid white;border-radius:15px;box-shadow:0 4px #ae967055;background:linear-gradient(#fff,#e7f4ef);font-weight:bold;color:#315d5e;font-size:15px;min-height:46px}
+body[data-game=maze] .maze-picker img{width:36px;height:36px;object-fit:contain;filter:drop-shadow(0 3px 2px #3d503a44)}
+body[data-game=maze] .maze-picker button[aria-pressed=true]{border-color:#8363aa;background:linear-gradient(#fff6d6,#f6dea9)}
+body[data-game=maze] .golf-game{min-height:0;height:100%;width:100%;padding:0;gap:20px}
+body[data-game=maze] .golf-board{flex-shrink:0;align-self:center}
+body[data-game=maze] .golf-status img{display:block;width:100%;height:100%;object-fit:contain;max-width:43px;max-height:43px}
+body[data-game=maze] .golf-controls{grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,48px);gap:5px;flex-shrink:0}
+body[data-game=maze] .golf-ball,body[data-game=maze] .maze-goal{filter:drop-shadow(0 5px 2px #4a523f44)}
+body[data-game=puzzle] #stage{background:linear-gradient(#e2f2d4,#cce5c0);padding:0}
+body[data-game=puzzle] .puzzle-picture{aspect-ratio:3/2}
+body[data-game=puzzle] .puzzle-hole{background-image:none;opacity:1}
+body[data-game=puzzle] .puzzle-piece{background-image:none}
+@media(min-width:751px){body[data-game=maze] .picnic-app,body[data-game=connecting] .picnic-app{width:min(1450px,100%)}}
+@media(max-width:750px){
+ body[data-game=maze] .maze-picker{gap:6px}
+ body[data-game=maze] .maze-picker button{padding:3px 7px;font-size:13px;gap:4px}
+ body[data-game=maze] .maze-picker img{width:31px;height:31px}
+ body[data-game=maze] .golf-game{display:flex;flex-direction:column;gap:5px;padding-bottom:5px}
+ body[data-game=maze] .golf-controls{position:static;grid-template-columns:repeat(5,44px);grid-template-rows:44px;gap:6px}
+ body[data-game=maze] .golf-controls [data-dir=left]{grid-area:1/1}
+ body[data-game=maze] .golf-controls [data-dir=up]{grid-area:1/2}
+ body[data-game=maze] .golf-status{grid-area:1/3}
+ body[data-game=maze] .golf-controls [data-dir=down]{grid-area:1/4}
+ body[data-game=maze] .golf-controls [data-dir=right]{grid-area:1/5}
+ body[data-game=maze] .golf-status img{max-width:36px;max-height:36px}
+}

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en-US" translate="no"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google" content="notranslate">
+<title>Memory Game — Level C Month 9</title>
+<link rel="stylesheet" href="../assets/navigation/gp-navigation.css?v=20260917-compact-pages"><link rel="stylesheet" href="../styles.css?v=20260907-1"><link rel="stylesheet" href="../../shared/general-games/memory-wheel.css?v=1">
+<link rel="stylesheet" href="../../shared/general-games/month9-games.css?v=mobile-v3"><script src="../assets/navigation/gp-sounds.js"></script><script src="../activity-rewards.js"></script><link rel="stylesheet" href="/LevelC_M9/apps/shared/category-icons/categories.css?v=6"></head>
+<body data-game-category="wonder-world" class="m7-game memory-game"><nav class="gp-navigation" aria-label="Lesson navigation"><div class="gp-navigation__links"><a class="gp-navigation__main" href="../index.html" aria-label="Main Home" title="Main Home"><span class="gp-navigation__icon" aria-hidden="true">🏠</span><span>Main Home</span></a><a class="gp-navigation__week" data-week-home href="../week-1.html#card-games" aria-label="Week Home" title="Week Home"><span class="gp-navigation__icon" aria-hidden="true">📅</span><span>Week Home</span></a><a class="gp-navigation__section" data-games-home href="wonder-week-1.html" aria-label="Back to games" title="Back to games"><span class="gp-navigation__icon" aria-hidden="true">←</span><span>Back</span></a></div></nav>
+<div class="game-floaties" aria-hidden="true"><span>🃏</span><span>🌟</span></div>
+<main class="m7-game-page">
+<header class="m7-game-header"><h1><img src="../../shared/general-games/game-list/game-memory.webp" alt="">Memory Game</h1><p>Look carefully, then find the 4 matching pairs!</p></header>
+<div class="m7-actions"><button class="m7-pill blue" id="preview" type="button">👀 Look for 3 Seconds</button><button class="m7-pill orange" id="restart" type="button">🔄 New Arrangement</button></div>
+<div class="memory-board" id="board" aria-label="Memory card board"></div><div class="memory-status" aria-live="polite"><span>Moves: <span id="moves">0</span></span><span>Pairs: <span id="pairs">0</span> / 4</span></div></main>
+<div class="match-modal" id="match-modal" role="dialog" aria-modal="true" aria-labelledby="match-title" hidden><div class="match-card"><h2 id="match-title">Great match!</h2><img id="match-image" src="" alt=""><p id="match-sentence"></p><button class="m7-pill green" id="match-continue" type="button">✓ Continue</button></div></div>
+<div class="game-celebration" id="celebration" role="dialog" aria-modal="true" aria-labelledby="celebration-title" hidden><div id="confetti" aria-hidden="true"></div><div class="celebration-card"><div class="celebration-emoji" aria-hidden="true">🎉🏆🎉</div><h2 id="celebration-title">Yay! You found all the pairs!</h2><button class="m7-pill green" id="play-again" type="button">🔄 Play Again</button></div></div>
+<script src="weekly-game-data.js?v=transparent-art-v4"></script>
+<script src="../../shared/general-games/sports-memory.js?v=1"></script></body></html>

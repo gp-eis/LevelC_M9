@@ -1,0 +1,30 @@
+.reward-modal{position:fixed;inset:0;z-index:2500;display:grid;place-items:center;padding:16px;background:#19365cc9}
+.reward-dialog{position:relative;width:min(620px,100%);max-height:calc(100svh - 32px);overflow:auto;padding:24px 18px;border:6px solid white;border-radius:30px;background:linear-gradient(#fff8d5,#e2f7ff);text-align:center;box-shadow:0 10px 0 #6ca8c1}
+.reward-dialog h2{color:#8a58b5;margin:6px 42px 18px;font-size:clamp(1.6rem,5vw,2.3rem)}
+.reward-dialog video{display:block;width:100%;max-height:55svh;object-fit:contain;border-radius:20px;background:#fff}
+.reward-dialog button{min-height:48px;margin:14px 5px 0;padding:10px 18px;border:3px solid white;border-radius:20px;background:#ffd367;color:#77531d;box-shadow:0 4px 0 #d6a34a;font-weight:900;cursor:pointer}
+.reward-dialog .reward-close{position:absolute;top:8px;right:8px;width:44px;min-height:44px;margin:0;padding:0;background:#ff94ac;color:#85354e;font-size:1.5rem}
+.reward-dialog .reward-done{background:#a9e8c6;color:#2c7353;box-shadow:0 4px 0 #68b792}
+.reward-fallback{font-size:2rem;color:#8964bd}
+[hidden]{display:none!important}body{min-height:100svh}.game-list-shell,.m7-game-page,.match-page{padding-top:90px!important}
+.answer-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0}.answer-wrap>.answer-choice{width:100%;flex:1}.answer-wrap>.listen-btn{position:static!important}
+.game-nav-card:focus-visible,.memory-card:focus-visible{outline:4px solid #174c99;outline-offset:4px}
+.world-hub{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.world-hub .game-nav-card{min-height:230px}.world-hub .world-emoji{font-size:68px}
+.gp-navigation__links>a{width:auto!important;min-width:44px;white-space:nowrap;padding:10px 14px!important}
+.memory-board{grid-template-columns:repeat(4,minmax(0,1fr))!important}.memory-card-picture img{object-fit:contain}
+#wheel::after{content:'⭐'}.game-floaties,.match-floaties{pointer-events:none}
+@media(max-width:600px){.gp-navigation__links{gap:6px!important}.gp-navigation__links>a{font-size:13px!important;padding:9px 10px!important}.match-board{display:flex;flex-direction:column;gap:18px}.sentence-box{order:-1;margin-top:0;padding:12px;gap:8px}.picture-choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.picture-choice:last-child{grid-column:1/-1;width:50%;justify-self:center}.picture-choice{padding:5px}.picture-choice img{height:100px}.answer-choices{grid-template-columns:1fr 1fr;gap:12px}.answer-choice>img{height:90px}.question-box>img{height:100px}.game-list-shell,.m7-game-page,.match-page{padding-top:70px!important}.world-hub{grid-template-columns:1fr}.memory-board{gap:5px}.m7-game-page{padding-inline:12px}.memory-card{min-height:0;min-width:0}.answer-wrap>.answer-choice{padding:10px}.game-list-shell{padding-inline:12px}}
+
+/* Match Month 8's compact navigation and keep the activity near the top on phones. */
+@media(max-width:720px){
+ .gp-navigation__links>a{width:44px!important;height:44px;min-height:44px;padding:8px!important}
+ .game-list-shell,.m7-game-page,.match-page{padding-top:16px!important;min-height:0}
+ .m7-game-page{align-content:start;padding-bottom:max(24px,env(safe-area-inset-bottom))}
+ .wheel-wrap{margin-top:32px}
+ .memory-status{flex-wrap:wrap;gap:8px 20px}
+ .memory-board{max-width:100%}
+ .memory-card-picture{min-width:0;min-height:0}
+ .memory-card-picture img{max-width:100%;max-height:100%}
+ .game-list-shell,.m7-game-page,.match-page{box-sizing:border-box}
+ .game-nav-card,.answer-choice,.picture-choice{touch-action:manipulation}
+}

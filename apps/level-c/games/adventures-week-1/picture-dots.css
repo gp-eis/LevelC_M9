@@ -1,0 +1,41 @@
+/* A clean worksheet inside the playful game shell. */
+.picture-dots-game{height:100%;display:grid;grid-template-rows:44px minmax(0,1fr) 42px;background:#f1eafa}.picture-dots-heading{display:flex;align-items:center;justify-content:center;gap:24px;color:#645281;background:#fff9ec;font-size:15px}.picture-dots-heading b{background:#e8dcff;padding:4px 14px;border-radius:12px}.worksheet-area{display:grid;place-items:center;min-height:0;padding:12px}.picture-dots-board{position:relative;aspect-ratio:6/5;width:100%;max-width:600px;max-height:100%;background:#fffefa;border:2px solid #fff;border-radius:22px;box-shadow:0 7px 0 #d4c9d8,0 10px 20px #6a547b22;touch-action:none;user-select:none}.picture-dots-board svg{display:block;width:100%;height:100%;pointer-events:none}.worksheet-details .skin,.worksheet-details .wrapper{fill:white}.shell-fill,.icing-fill,.reveal-detail,.picture-shadow{opacity:0;transition:opacity .7s}.picture-dot{position:absolute;transform:translate(-50%,-50%);width:46px;height:48px;background:transparent;border:0;padding:0;color:#34434a;z-index:2;touch-action:none;font:bold 19px 'Trebuchet MS',sans-serif;display:grid;justify-items:center;align-content:center;gap:3px}.dot-label{background:#fffefa;border-radius:5px;padding:0 4px;line-height:22px}.dot-point{width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px #fffefa}.picture-dot.is-next .dot-point{background:#9163bf;box-shadow:0 0 0 5px #ffe290}.picture-dot.is-next .dot-label{background:#ffedaa}.picture-dot.is-joined{color:#8c70aa}.picture-dot.try-again{color:#b64f62;animation:dot-wiggle .2s 2}.picture-dots-hint{background:#fff9ec;display:flex;gap:8px;align-items:center;justify-content:center;color:#67517c;font-size:18px}.is-complete .skin{fill:url(#skin)}.is-complete .shell-fill{fill:url(#shell)}.is-complete .icing-fill{fill:url(#icing)}.is-complete .wrapper{fill:url(#wrapper)}.is-complete .shell-fill,.is-complete .icing-fill,.is-complete .reveal-detail,.is-complete .picture-shadow{opacity:1}.is-complete .picture-dot{opacity:0;pointer-events:none;transition:opacity .4s}.is-complete svg{animation:picture-bounce .6s ease-out}@keyframes picture-bounce{50%{transform:translateY(-7px)}}
+@media(min-width:701px){body[data-game=abc] #stage,body[data-game=numbers] #stage{height:clamp(440px,67svh,660px)}.picture-dots-board{width:min(600px,calc((67svh - 110px)*1.2))}}
+@media(max-width:700px){body[data-game=abc] #stage,body[data-game=numbers] #stage{height:420px}.worksheet-area{padding:8px}.picture-dots-board{border-radius:16px}.picture-dot{width:42px;height:44px;font-size:17px}.dot-label{line-height:20px}.picture-dots-heading{font-size:13px;gap:14px}}
+@media(prefers-reduced-motion:reduce){.picture-dots-board *{animation:none!important;transition:none!important}}
+.picture-dots-game,.worksheet-area{min-width:0}.picture-dots-board{min-width:0;box-sizing:border-box}.picture-dot .dot-point{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}.picture-dot .dot-label{position:absolute;bottom:calc(50% + 10px);left:50%;transform:translateX(-50%)}
+
+/* Week 1 scenery: the drawing belongs inside the park / picnic setting. */
+body[data-game=abc] .worksheet-area{background:url('assets/forest-floor.png') center/cover no-repeat}
+body[data-game=numbers] .worksheet-area{background:url('assets/forest-table.png') center/cover no-repeat}
+.picture-dots-board{background:radial-gradient(ellipse at 50% 57%,#fffbe9e8 0%,#fffbe9d6 44%,#fffbe980 63%,#fffbe900 77%);border:0;border-radius:0;box-shadow:none}
+.picture-dot .dot-label{background:#fff9d9;border:1px solid #fff;border-radius:8px;box-shadow:0 2px 3px #253c3525;color:#29414a}
+.picture-dot .dot-point{box-shadow:0 0 0 3px #fffbe5}
+.picture-dot.is-next .dot-label{background:#ffe18b;border-color:#fff7ce}
+.picture-dots-heading,.picture-dots-hint{background:#fff5dceF}
+.picture-dots-heading b{background:#d4efe2;color:#315a4f}
+.picture-shadow{fill:#5d725b;opacity:.12}
+.is-complete.picture-dots-board{background:radial-gradient(ellipse at 50% 65%,#fffbe9b5,#fffbe933 55%,transparent 76%)}
+@media(max-width:700px){body[data-game=abc] .worksheet-area{background-position:58% center}body[data-game=numbers] .worksheet-area{background-position:center}}
+
+.is-complete .flower-center{fill:#ed9b46}.is-complete .wrapper{fill:#ffeac5}
+
+.is-complete .trophy-metal{fill:url(#gold)}.is-complete .trophy-base{fill:#8360be}.is-complete .racket-neck{fill:#44c6cf}.is-complete .racket-grip{fill:#f99171}
+
+.is-complete .helmet-strap{fill:#ffb25b}.is-complete .jersey-star{fill:#ffe174}
+
+/* The completed number picture is glazed ceramic with an open handle and grounded saucer. */
+body[data-game=numbers] .picture-shadow{display:none}
+body[data-game=numbers] .picture-joined-line{stroke:#786287;stroke-width:3.5}
+body[data-game=numbers] .is-complete .tea-handle{fill:url(#tea-handle)}
+body[data-game=numbers] .is-complete .tea-saucer{fill:url(#tea-saucer)}
+body[data-game=numbers] .is-complete .tea-drink{fill:url(#tea-drink)}
+body[data-game=numbers] .is-complete .picture-joined-line{stroke:#9e83b9}
+
+.is-complete .tea-ground-shadow{opacity:.2}.is-complete .tea-contact-shadow{opacity:.18}
+
+.is-complete .acorn-cap{fill:url(#acorn-cap)}
+body[data-game=numbers] .picture-joined-line{stroke:#396b36;stroke-width:4}
+body[data-game=numbers] .is-complete .picture-joined-line{stroke:#396b36}
+.picture-shadow{display:none}
+@media(max-width:700px){.picture-dot{width:34px;height:36px;font-size:15px}.dot-label{line-height:18px;padding:0 3px}.picture-dot .dot-label{bottom:calc(50% + 8px)}}

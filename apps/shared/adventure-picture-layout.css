@@ -1,0 +1,423 @@
+/* Desktop picture workbenches: keep the complete artwork large, with controls
+   in real grid tracks instead of stretching a small picture across a wide stage. */
+/* Each tray cell may be wider or taller than its piece. Fit the original crop
+   inside both dimensions; constraining width alone squashes a height:100% crop. */
+body[data-game=puzzle] .puzzle-piece .piece-lift {
+  display:grid;
+  place-items:center;
+  width:100%;
+  height:100%;
+  min-width:0;
+  min-height:0;
+  container-type:size;
+}
+body[data-game=puzzle] .puzzle-piece .piece-lift>.puzzle-cutout {
+  width:min(100%,calc(100cqh * var(--piece-ratio)));
+  height:auto;
+  aspect-ratio:var(--piece-ratio);
+  max-width:none;
+  max-height:none;
+  min-width:0;
+  min-height:0;
+  margin:0;
+}
+@media (min-width:901px) {
+  /* The palette, instructions and finish controls share a flowing left rail.
+     display:contents keeps the existing canvas and motion-layer DOM untouched. */
+  body[data-game=coloring] .play-card,
+  body[data-game=coloring] #activity .play-shell {
+    --picture-rail:clamp(240px,18vw,286px);
+    display:grid;
+    grid-template-columns:var(--picture-rail) minmax(0,1fr);
+    grid-template-rows:auto auto auto minmax(0,1fr);
+    position:relative;
+    container-type:size;
+    width:100%;
+    max-width:min(100%,calc((100dvh - 128px)*1.5 + var(--picture-rail)));
+    min-height:0;
+    justify-self:center;
+    background:#fff4dd;
+  }
+  body[data-game=coloring] #stage,
+  body[data-game=coloring] #activity .paint-game {
+    display:contents;
+  }
+  body[data-game=coloring] .paint-game {display:contents}
+  body[data-game=coloring] .play-card .instructions,
+  body[data-game=coloring] #activity .mission {
+    grid-column:1;
+    grid-row:1;
+    display:block;
+    align-self:start;
+    padding:20px 18px 12px;
+    border:0;
+    min-width:0;
+    background:transparent;
+  }
+  body[data-game=coloring] #activity .mission-number {display:none}
+  body[data-game=coloring] .instructions h2,
+  body[data-game=coloring] #activity .mission h2 {
+    font-size:24px;
+    line-height:1.2;
+    margin:0 0 10px;
+  }
+  body[data-game=coloring] .instructions p,
+  body[data-game=coloring] #activity .mission p {
+    font-size:15px;
+    line-height:1.45;
+    margin:0;
+  }
+  body[data-game=coloring] .instructions #listen,
+  body[data-game=coloring] #activity .mission #listen {
+    width:100%;
+    min-height:48px;
+    margin:14px 0 0;
+    padding:9px 12px;
+    justify-content:center;
+    font-size:15px;
+  }
+  body[data-game=coloring] .paint-palette,
+  body[data-game=coloring] #activity .paint-palette {
+    grid-column:1;
+    grid-row:2;
+    position:static;
+    inset:auto;
+    width:auto;
+    height:auto;
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    align-content:center;
+    gap:5px 2px;
+    padding:10px 12px;
+    margin:0;
+    background:transparent;
+  }
+  body[data-game=coloring] .paint-palette button,
+  body[data-game=coloring] #activity .paint-palette button {
+    width:100%;
+    min-width:0;
+    min-height:58px;
+    padding:4px 1px;
+    border-radius:12px;
+    border:2px solid transparent;
+    background:transparent;
+  }
+  body[data-game=coloring] .paint-palette button[aria-pressed=true],
+  body[data-game=coloring] #activity .paint-palette button[aria-pressed=true] {
+    border-color:#397b7c;
+    background:#fff;
+    box-shadow:0 3px #7caaa633;
+  }
+  body[data-game=coloring] .paint-palette button span,
+  body[data-game=coloring] #activity .paint-palette button span {
+    width:32px;
+    height:32px;
+    margin:auto;
+  }
+  body[data-game=coloring] .paint-palette button small {
+    display:block;
+    font-size:11px;
+    line-height:15px;
+    margin-top:3px;
+  }
+  body[data-game=coloring] .paint-scene,
+  body[data-game=coloring] #activity .paint-scene {
+    grid-column:2;
+    grid-row:1/-1;
+    position:relative;
+    display:block;
+    align-self:center;
+    justify-self:center;
+    width:min(100%,150cqh);
+    height:auto;
+    aspect-ratio:3/2;
+    max-width:none;
+    max-height:none;
+    min-width:0;
+    min-height:0;
+    margin:0;
+    overflow:hidden;
+  }
+  body[data-game=coloring] .paint-scene canvas,
+  body[data-game=coloring] #activity .paint-scene canvas {
+    position:static;
+    inset:auto;
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+  }
+  body[data-game=coloring] .paint-tools,
+  body[data-game=coloring] #activity .paint-tools {
+    grid-column:1;
+    grid-row:3;
+    position:static;
+    inset:auto;
+    width:auto;
+    height:auto;
+    display:grid;
+    grid-template-columns:minmax(65px,.65fr) minmax(0,1.35fr);
+    align-content:start;
+    align-items:center;
+    gap:8px;
+    margin:0;
+    padding:10px 14px;
+    background:transparent;
+    font-size:13px;
+  }
+  body[data-game=coloring] .paint-tools .paint-status {
+    grid-column:1/-1;
+    grid-row:1;
+    order:0;
+    text-align:center;
+    line-height:1.35;
+  }
+  body[data-game=coloring] .paint-tools [data-undo] {grid-column:1;grid-row:2}
+  body[data-game=coloring] .paint-tools [data-finish] {grid-column:2;grid-row:2}
+  body[data-game=coloring] .paint-tools button {
+    width:100%;
+    min-width:0;
+    min-height:48px;
+    padding:8px 4px;
+    font-size:13px;
+    white-space:normal;
+    line-height:1.2;
+  }
+  body[data-game=coloring] .play-card>footer,
+  body[data-game=coloring] #activity .answer-bar {
+    grid-column:1;
+    grid-row:4;
+    display:flex;
+    flex-direction:column;
+    align-self:end;
+    align-items:stretch;
+    justify-content:end;
+    gap:12px;
+    padding:14px 18px;
+    border:0;
+    background:transparent;
+    min-height:0;
+    min-width:0;
+  }
+  body[data-game=coloring] .play-card>footer p,
+  body[data-game=coloring] #activity .answer-bar p {
+    font-size:14px;
+    line-height:1.4;
+    margin:0;
+  }
+  body[data-game=coloring] .finish-actions {justify-content:center;flex-wrap:wrap;gap:8px}
+  body[data-game=coloring] #celebrate,
+  body[data-game=coloring] #next {width:100%;min-height:48px}
+
+  /* Let the complete picture use the height; large loose pieces sit beside it.
+     Existing per-picture aspect ratios and all jigsaw clips remain unchanged. */
+  body[data-game=puzzle] .play-card,
+  body[data-game=puzzle] #activity .play-shell {
+    width:100%;
+    max-width:min(100%,calc((100dvh - 280px)*1.5 + 240px));
+    justify-self:center;
+  }
+  body[data-game=puzzle] #stage {padding:0;overflow:hidden;background:#dce9d5}
+  body[data-game=puzzle] .puzzle-game,
+  body[data-game=puzzle] .baseline-stage .puzzle-game {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) clamp(180px,17vw,250px);
+    grid-template-rows:minmax(0,1fr) 36px;
+    min-height:0;
+    min-width:0;
+    width:100%;
+    height:100%;
+  }
+  body[data-game=puzzle] .puzzle-scene {
+    grid-column:1;
+    grid-row:1/-1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:0;
+    min-height:0;
+    padding:0;
+    background:#e4edda;
+  }
+  body[data-game=puzzle] .puzzle-picture {max-width:100%;max-height:100%}
+  body[data-game=puzzle] .puzzle-tray,
+  body[data-game=puzzle] .baseline-stage .puzzle-tray {
+    grid-column:2;
+    grid-row:1;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-auto-rows:minmax(0,1fr);
+    align-items:center;
+    align-content:stretch;
+    gap:10px;
+    width:100%;
+    height:100%;
+    min-width:0;
+    min-height:0;
+    padding:16px 10px 8px;
+    background:#fff4dd;
+    box-shadow:inset 2px 0 #d2bd9433;
+  }
+  body[data-game=puzzle] .puzzle-piece,
+  body[data-game=puzzle] .baseline-stage .puzzle-piece {
+    width:100%;
+    height:100%;
+    min-height:0;
+    min-width:0;
+    max-height:180px;
+    padding:6px;
+    flex:none;
+    background-image:none;
+  }
+  /* Four-piece activities have room for one generous vertical rack. Two narrow
+     columns made their round and wide pieces unnecessarily small. */
+  body[data-game=puzzle] .puzzle-tray:has(>.puzzle-piece:nth-child(4):last-child) {
+    grid-template-columns:minmax(0,1fr);
+  }
+  body[data-game=puzzle] .puzzle-count {
+    grid-column:2;
+    grid-row:2;
+    display:grid;
+    place-items:center;
+    min-width:0;
+    padding:4px;
+    background:#fff4dd;
+    font-size:14px;
+  }
+  body[data-game=puzzle] .puzzle-game.puzzle-complete {
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:minmax(0,1fr) 36px;
+  }
+  body[data-game=puzzle] .puzzle-complete .puzzle-scene {grid-row:1;grid-column:1}
+  body[data-game=puzzle] .puzzle-complete .puzzle-tray {display:none}
+  body[data-game=puzzle] .puzzle-complete .puzzle-count {grid-column:1;grid-row:2}
+
+  /* A drawing-sized desktop workbench, keeping scenery and the dot geometry. */
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) .picnic-app>.play-card,
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) #activity .play-shell {
+    --picture-rail:clamp(220px,18vw,270px);
+    display:grid;
+    grid-template-columns:var(--picture-rail) minmax(0,1fr);
+    grid-template-rows:auto minmax(0,1fr);
+    width:100%;
+    max-width:min(100%,calc((100dvh - 128px)*1.2 + var(--picture-rail)));
+    min-height:0;
+    justify-self:center;
+    background:#fff9ec;
+  }
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) .instructions,
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) #activity .mission {
+    grid-column:1;
+    grid-row:1;
+    display:block;
+    align-self:start;
+    min-width:0;
+    padding:24px 20px;
+    border:0;
+    background:transparent;
+  }
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) .instructions h2,
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) #activity .mission h2 {font-size:25px;line-height:1.2;margin:0 0 12px}
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) .instructions p,
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) #activity .mission p {font-size:15px;line-height:1.5}
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) #listen {width:100%;min-height:48px;margin:18px 0 0;justify-content:center}
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) #stage {
+    grid-column:2;
+    grid-row:1/-1;
+    height:auto;
+    min-height:0;
+    min-width:0;
+    width:100%;
+    padding:0;
+    overflow:hidden;
+    container-type:size;
+  }
+  body.in-game[data-game=dots] #stage {height:auto}
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) .picture-dots-game {
+    width:100%;
+    height:100%;
+    min-width:0;
+    min-height:0;
+    grid-template-rows:48px minmax(0,1fr) 44px;
+  }
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) .worksheet-area {padding:16px;min-height:0;min-width:0}
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) .picture-dots-board {
+    width:min(100%,calc((100cqh - 124px)*1.2));
+    max-width:none;
+    max-height:none;
+    height:auto;
+    aspect-ratio:6/5;
+  }
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) .play-card>footer,
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) #activity .answer-bar {
+    grid-column:1;
+    grid-row:2;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    align-self:start;
+    gap:12px;
+    min-width:0;
+    padding:18px 20px;
+    border:0;
+    background:transparent;
+  }
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) .play-card>footer p,
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) #activity .answer-bar p {font-size:14px;line-height:1.4}
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) .finish-actions {justify-content:center;flex-wrap:wrap;gap:8px}
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) #celebrate,
+  body:is([data-game=abc],[data-game=numbers],[data-game=dots]) #next {width:100%;min-height:48px}
+}
+
+@media (min-width:901px) and (max-height:800px) {
+  body[data-game=coloring] .play-card .instructions,
+  body[data-game=coloring] #activity .mission {padding:14px 16px 6px}
+  body[data-game=coloring] .instructions h2,
+  body[data-game=coloring] #activity .mission h2 {font-size:21px;margin-bottom:7px}
+  body[data-game=coloring] .instructions p,
+  body[data-game=coloring] #activity .mission p {font-size:13px;line-height:1.4}
+  body[data-game=coloring] .instructions #listen,
+  body[data-game=coloring] #activity .mission #listen {margin-top:10px;min-height:44px}
+  body[data-game=coloring] .paint-palette,
+  body[data-game=coloring] #activity .paint-palette {padding:8px 12px;gap:2px}
+  body[data-game=coloring] .paint-palette button,
+  body[data-game=coloring] #activity .paint-palette button {min-height:52px;padding:2px 1px}
+  body[data-game=coloring] .paint-tools,
+  body[data-game=coloring] #activity .paint-tools {padding:6px 12px}
+  body[data-game=coloring] .play-card>footer,
+  body[data-game=coloring] #activity .answer-bar {padding:10px 16px;gap:8px}
+}
+
+/* A1's original four-piece puzzle uses a flex stage. Explicitly constrain its
+   single grid track so the loose-piece tray cannot widen and crop the scene. */
+@media (max-width:900px) {
+  body.in-game[data-game=puzzle] #stage {min-width:0}
+  body.in-game[data-game=puzzle] .puzzle-game {
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    grid-template-columns:minmax(0,1fr);
+  }
+  body.in-game[data-game=puzzle] .puzzle-scene {
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+  body.in-game[data-game=puzzle] .puzzle-picture {max-width:100%;min-width:0}
+  body.in-game[data-game=puzzle] .puzzle-tray {
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    gap:4px;
+    padding:7px 4px;
+  }
+  body.in-game[data-game=puzzle] .puzzle-piece {
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    height:80px;
+    padding:5px;
+  }
+}

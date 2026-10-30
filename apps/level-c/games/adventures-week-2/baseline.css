@@ -1,0 +1,189 @@
+/* Week 1 interaction surfaces, confined to the restored modules. */
+#stage.baseline-stage{height:clamp(480px,67svh,690px);min-height:0;overflow:hidden;position:relative;padding:0}
+.baseline-stage .math-play{background-image:url('assets/rest-table.png')}
+.baseline-stage .collect-world{background-image:url('assets/rest-garden.png');background-position:center;background-size:100% 100%}
+.baseline-stage .picnic-pattern-object{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 3px #60513744)}
+.baseline-stage .pattern-supply .picnic-pattern-object{width:85px;height:85px;margin:auto}
+.baseline-stage .pattern-supply button{width:115px;background:linear-gradient(white,#e9f7f5);border:4px solid white;border-radius:24px;box-shadow:0 7px #7eaaa2;padding:10px;touch-action:none}
+.baseline-stage .pattern-supply{background:none;padding:0;border:0;box-shadow:none;gap:25px}
+.baseline-stage .pattern-row{flex-wrap:nowrap;height:auto;align-items:center;background:#fffef0b3;border-radius:24px;padding:14px;gap:10px}
+.baseline-stage .pattern-slot,.baseline-stage .pattern-fixed{width:auto;height:auto;aspect-ratio:1;flex:1;max-width:120px;border-radius:18px;box-shadow:0 6px #8b97764d}
+.baseline-stage .math-object img,.baseline-stage .apple-progress img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.baseline-stage .collect-world .collect-basket{top:47%;width:min(430px,75%);height:40%;padding-top:15%;justify-content:flex-start}
+.baseline-stage .basket-art{object-fit:contain}.baseline-stage .collect-world .basket-fruit{height:30%;padding-top:0;position:absolute;top:44%;width:72%}
+.baseline-stage .collect-world .collect-basket strong{top:82%;background:#6b4318c9;padding:4px 12px;border-radius:12px}
+.baseline-stage .collect-world .apple-0{left:12%;top:16%}.baseline-stage .collect-world .apple-1{left:21%;top:25%}.baseline-stage .collect-world .apple-2{left:7%;top:42%}.baseline-stage .collect-world .apple-3{left:84%;top:16%}.baseline-stage .collect-world .apple-4{left:93%;top:32%}
+.baseline-stage .bakery-zones{width:min(900px,100%)}
+.baseline-stage .cookie-zone .math-object{width:clamp(65px,8vw,100px);height:85px}.baseline-stage .math-action{background:linear-gradient(#ffb45c,#f38d40);color:#4f2f18;box-shadow:0 5px #be7237;border-radius:22px}
+.baseline-stage .puzzle-picture{aspect-ratio:3/2;max-width:100%}.baseline-stage .puzzle-hole{width:unset;opacity:1;border-radius:0;box-shadow:none}.baseline-stage .puzzle-piece{background-image:none;width:120px;height:95px;aspect-ratio:auto;padding:8px;opacity:1}
+.baseline-stage .puzzle-base{object-fit:contain}.baseline-stage .puzzle-tray{background:#fff9ed}.baseline-stage .puzzle-count{text-align:center}.baseline-stage .puzzle-cutout{background:none}
+.baseline-stage .connect-game{grid-template-rows:65px minmax(0,1fr) 50px}.baseline-stage .connect-players,.baseline-stage .connect-footer{background:#fff8e9}
+.baseline-stage .connect-board{height:auto}.baseline-stage .maze-wrap{height:100%;display:grid;grid-template-rows:52px minmax(0,1fr)}.baseline-stage .maze-picker{display:flex;justify-content:center;gap:10px;align-items:center}.baseline-stage .maze-picker button{border:3px solid white;border-radius:15px;background:#fff9df;padding:8px 14px;color:#345a64}.baseline-stage .maze-picker [aria-pressed=true]{background:#ffd36a}
+@media(max-width:700px){#stage.baseline-stage{height:510px}.baseline-stage .pattern-row{padding:8px;gap:4px}.baseline-stage .pattern-slot,.baseline-stage .pattern-fixed{border-width:2px;border-radius:11px;font-size:24px}.baseline-stage .pattern-supply button{width:100px}.baseline-stage .pattern-supply .picnic-pattern-object{width:70px;height:70px}.baseline-stage .puzzle-piece{width:22%;height:80px}.baseline-stage .puzzle-tray{gap:6px;padding:7px}.baseline-stage .puzzle-game{grid-template-rows:minmax(0,1fr) 100px 30px}.baseline-stage .cookie-zone .math-object{width:52px;height:60px}}
+
+.contextual-hunt{background-image:url('assets/rest-hunt-story-v2.webp');background-size:100% 100%;aspect-ratio:3/2}.contextual-hunt .hunt-hotspot{width:18%;min-width:0;height:22%;aspect-ratio:auto}.hunt-hotspot img{opacity:0}.hunt-hotspot.found{border:4px solid #ffdb66;border-radius:50%;background:#fff5a330}.baseline-stage .dots-game{height:100%}.baseline-stage .dots-board img{object-fit:cover}.baseline-stage .dots-board{height:calc(100% - 80px);aspect-ratio:3/4;width:auto;max-width:100%;margin:auto}.baseline-stage .dots-board svg{pointer-events:none}@media(max-width:700px){.contextual-hunt{aspect-ratio:3/2;height:auto;background-size:100% 100%}}
+.baseline-stage .puzzle-game,.baseline-stage .puzzle-scene,.baseline-stage .puzzle-tray{min-width:0;width:100%}.baseline-stage .puzzle-scene{overflow:hidden}.baseline-stage .puzzle-piece{flex:0 1 22%;min-width:0}.baseline-stage .puzzle-base{max-width:none}
+
+@media(max-width:700px){.baseline-stage .cookie-zone{height:210px;min-height:0}.baseline-stage .cookie-zone .math-object{width:70px;height:75px}.baseline-stage .cookie-items{gap:0}.baseline-stage .bakery-zones{gap:12px;align-items:center}}
+
+body[data-game=mistakes] .scene{aspect-ratio:3/2;background-size:100% 100%;max-height:none}
+
+/* Match Week 1's painting tool and discovery interaction. */
+.paint-scene canvas{cursor:url('/LevelC_M9/apps/level-a/games/adventures/assets/paint-bucket-cursor.svg?v=2') 5 5,pointer}
+.baseline-stage .bakery-world .bakery-zones{overflow:hidden}
+.baseline-stage .collect-world{container-type:size;overflow:hidden}
+.baseline-stage .collect-world .collect-basket{top:auto;bottom:14%;width:min(62cqw,44cqh,300px);height:auto;aspect-ratio:1;padding:0;isolation:isolate;overflow:visible}
+.baseline-stage .collect-basket .basket-art{z-index:0;object-fit:contain;filter:drop-shadow(0 6px 3px #50371440)}
+.baseline-stage .basket-front{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:2;clip-path:polygon(0 48%,10% 52%,20% 58%,35% 63%,50% 66%,65% 65%,80% 60%,90% 56%,100% 49%,100% 100%,0 100%)}
+.baseline-stage .collect-world .basket-fruit{position:absolute;left:20%;top:40%;width:60%;height:28%;padding:0;z-index:1;align-items:flex-end;justify-content:center;gap:0}
+.baseline-stage .collect-world .basket-fruit .math-object{width:32%;height:100%;max-width:none;aspect-ratio:auto;flex-shrink:1}
+.baseline-stage .collect-world .collect-basket strong{top:86%;z-index:4;white-space:nowrap;font-size:12px}
+.baseline-stage .collect-basket .serving-hands{z-index:3}
+.baseline-stage .collect-basket .serve-hand{top:62%;bottom:auto;width:24%;height:38%;animation:basket-grip .5s ease-out both}
+.baseline-stage .collect-basket .hand-left{left:-3%;--hand-turn:-15deg}.baseline-stage .collect-basket .hand-right{right:-3%;--hand-turn:15deg}
+@keyframes basket-grip{from{opacity:0;transform:translateY(35px) rotate(var(--hand-turn)) scaleX(var(--hand-flip))}to{opacity:1;transform:translateY(0) rotate(var(--hand-turn)) scaleX(var(--hand-flip))}}
+body[data-game=mistakes] .picture-hunt{width:100%;height:100%}body[data-game=mistakes] .hunt-list{border:0}body[data-game=mistakes] .hunt-list li{font-size:16px}body[data-game=mistakes] .hunt-response{white-space:normal;text-align:center;max-width:95%}
+@media(max-width:700px){body[data-game=mistakes] #stage{height:auto;min-height:0}body[data-game=mistakes] .picture-hunt{display:flex;flex-direction:column}body[data-game=mistakes] .hunt-scene{aspect-ratio:3/2;flex:none;width:100%}body[data-game=mistakes] .hunt-list{padding:12px}body[data-game=mistakes] .hunt-list h3{font-size:17px;margin-bottom:8px}body[data-game=mistakes] .hunt-count{display:inline;margin-left:10px}body[data-game=mistakes] .hunt-list ul{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}body[data-game=mistakes] .hunt-list li{flex-direction:column;font-size:12px;padding:6px;min-height:75px}body[data-game=mistakes] .hunt-list p{display:none}}
+@media(prefers-reduced-motion:reduce){.baseline-stage .collect-basket .serve-hand{animation:none;transform:rotate(var(--hand-turn)) scaleX(var(--hand-flip))}}
+
+@media(max-width:700px){body[data-game=puzzle] #stage{height:auto}body[data-game=puzzle] .puzzle-game{grid-template-rows:auto 100px 30px}body[data-game=puzzle] .puzzle-scene{aspect-ratio:3/2}}
+
+.baseline-stage .collect-world .apple-0{left:10%;top:27%}.baseline-stage .collect-world .apple-1{left:23%;top:40%}.baseline-stage .collect-world .apple-2{left:9%;top:55%}.baseline-stage .collect-world .apple-3{left:82%;top:31%}.baseline-stage .collect-world .apple-4{left:92%;top:50%}
+.math-drag-ghost img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.contextual-hunt{max-height:none}
+
+.contextual-hunt .hunt-hotspot{width:var(--size);height:var(--height)}
+.baseline-stage .pattern-fixed,.baseline-stage .pattern-slot{position:relative;overflow:hidden}.baseline-stage .pattern-row .picnic-pattern-object{position:absolute;inset:8%;width:84%;height:84%;min-width:0;min-height:0;object-fit:contain}
+.baseline-stage .collect-world{background-image:url('assets/rest-garden.png')}
+.baseline-stage .collect-world .fruit-patch{height:100%}.baseline-stage .collect-world .apple-0{left:12%;top:49%}.baseline-stage .collect-world .apple-1{left:19%;top:60%}.baseline-stage .collect-world .apple-2{left:8%;top:72%}.baseline-stage .collect-world .apple-3{left:88%;top:58%}.baseline-stage .collect-world .apple-4{left:92%;top:77%}
+
+/* Sports equipment stays on the court and in clearly separate storage areas. */
+.baseline-stage .serving-plate{border-radius:25px;border-color:#f9f4dc;background:linear-gradient(135deg,#6bccdb,#258cbd);color:#123f5b;box-shadow:0 8px #23688466,inset 0 0 0 3px #b4f6fb}
+.baseline-stage .cookie-box{background:linear-gradient(#d6e8f5,#8bb3d4);border-color:#6389a9;color:#21445e}
+.baseline-stage .tree-apple{width:clamp(48px,10cqw,76px);height:clamp(48px,10cqw,76px)}
+.baseline-stage .apple-0{left:11%;top:40%}.baseline-stage .apple-1{left:14%;top:60%}.baseline-stage .apple-2{left:9%;top:77%}.baseline-stage .apple-3{left:88%;top:45%}.baseline-stage .apple-4{left:91%;top:71%}
+
+.baseline-stage .collect-world .apple-0{left:11%;top:40%}.baseline-stage .collect-world .apple-1{left:14%;top:60%}.baseline-stage .collect-world .apple-2{left:9%;top:77%}.baseline-stage .collect-world .apple-3{left:88%;top:45%}.baseline-stage .collect-world .apple-4{left:91%;top:71%}
+.baseline-stage .collect-world .collect-basket strong{background:#175a74e6}
+.baseline-stage .collect-world .apple-0{left:20%;top:52%}.baseline-stage .collect-world .apple-1{left:15%;top:67%}.baseline-stage .collect-world .apple-2{left:10%;top:80%}.baseline-stage .collect-world .apple-3{left:83%;top:55%}.baseline-stage .collect-world .apple-4{left:91%;top:78%}
+
+/* Level C: six puzzle pieces, quantities through five, unclipped touch controls. */
+.baseline-stage .puzzle-tray{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:center}.baseline-stage .puzzle-piece{width:100%;height:85px;min-width:0;flex:none}.baseline-stage .puzzle-hole{border:2px solid #fff8;}
+.baseline-stage .collect-world .collect-basket{width:min(76cqw,49cqh,340px)}.baseline-stage .collect-world .basket-fruit{left:17%;width:66%;top:33%;height:33%;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:0}.baseline-stage .collect-world .basket-fruit .math-object{width:100%;height:100%;min-width:0;min-height:0}
+.baseline-stage .collect-world .apple-0{left:14%;top:35%}.baseline-stage .collect-world .apple-1{left:25%;top:49%}.baseline-stage .collect-world .apple-2{left:10%;top:69%}.baseline-stage .collect-world .apple-3{left:84%;top:37%}.baseline-stage .collect-world .apple-4{left:75%;top:51%}.baseline-stage .collect-world .apple-5{left:91%;top:69%}
+.baseline-stage .cookie-zone .math-object{width:70px;height:75px}.baseline-stage .serving-plate{background:linear-gradient(135deg,#edc0ff,#ba8ce0);color:#463057;border-color:#fff5fc}.baseline-stage .cookie-box{background:linear-gradient(#ffe7a0,#e9b456);border-color:#d2a34f;color:#604a24}
+@media(max-width:700px){.baseline-stage .puzzle-tray{grid-template-columns:repeat(3,minmax(0,1fr));padding:8px;gap:6px}.baseline-stage .puzzle-piece{height:82px}.baseline-stage .puzzle-game{grid-template-rows:auto 190px 30px}body[data-game=puzzle] .puzzle-game{grid-template-rows:auto 190px 30px}.baseline-stage .cookie-zone .math-object{width:46px;height:52px}.baseline-stage .cookie-zone{height:215px}.baseline-stage .cookie-items{min-height:115px;align-content:center}.baseline-stage .pattern-supply button{width:105px}.baseline-stage .pattern-supply{gap:16px}body[data-game=mistakes] .hunt-list ul{grid-template-columns:repeat(4,minmax(0,1fr))}.side-panel{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.baseline-stage .collect-world .tree-apple{z-index:3}.baseline-stage .collect-world .apple-1{left:12%;top:50%}.baseline-stage .collect-world .apple-4{left:90%;top:50%}
+.baseline-stage .collect-world .basket-fruit{display:flex;left:17%;width:66%;top:42%;height:22%;align-items:flex-end;justify-content:center;gap:0}.baseline-stage .collect-world .basket-fruit .math-object{width:20%;height:100%;flex-shrink:1}
+
+.baseline-stage .puzzle-hole .puzzle-guide{position:absolute;inset:0;width:100%;height:100%;opacity:.23;pointer-events:none}.baseline-stage .puzzle-hole{overflow:hidden}
+
+/* Larger quantities remain easy to count in rows of five, with no nested scrolling. */
+body[data-game=arithmetic] #stage.baseline-stage{height:auto;min-height:520px;overflow:hidden}
+body[data-game=arithmetic] .bakery-world{height:auto;min-height:520px;grid-template-rows:auto auto auto auto;gap:12px}
+body[data-game=arithmetic] .bakery-zones{height:auto;overflow:visible;align-items:stretch;padding:8px 10px 18px}
+body[data-game=arithmetic] .cookie-zone{height:auto;max-height:none;min-height:240px;padding:12px;border-radius:22px}
+body[data-game=arithmetic] .cookie-items{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;align-content:start;justify-items:center;width:100%;min-height:65px}
+body[data-game=arithmetic] .cookie-zone .math-object{width:100%;height:auto;aspect-ratio:1;max-width:66px;min-width:0;min-height:0}
+@media(max-width:700px){body[data-game=arithmetic] .bakery-world{min-height:0;padding:10px;gap:8px}body[data-game=arithmetic] #stage.baseline-stage{min-height:0}body[data-game=arithmetic] .bakery-zones{display:grid;grid-template-columns:1fr;gap:12px;padding:0 3px 10px}body[data-game=arithmetic] .cookie-zone{width:100%;height:auto;min-height:0;padding:8px;border-width:4px;gap:5px}body[data-game=arithmetic] .cookie-items{min-height:44px;gap:2px}body[data-game=arithmetic] .cookie-zone .math-object{height:44px;width:44px;max-width:100%}body[data-game=arithmetic] .baking-tray::before,body[data-game=arithmetic] .baking-tray::after{display:none}body[data-game=arithmetic] .goal-card{padding:5px 12px}body[data-game=arithmetic] .math-action{min-height:46px}}
+
+.connect-board [data-end]{cursor:pointer}
+
+@media(max-width:700px){.contextual-hunt .hunt-hotspot{min-width:40px;min-height:40px}}
+
+body[data-game=collect] .collect-world .apple-0{left:10%;top:36%}body[data-game=collect] .collect-world .apple-1{left:26%;top:35%}body[data-game=collect] .collect-world .apple-2{left:42%;top:37%}body[data-game=collect] .collect-world .apple-3{left:58%;top:35%}
+body[data-game=collect] .collect-world .apple-4{left:74%;top:37%}body[data-game=collect] .collect-world .apple-5{left:90%;top:35%}body[data-game=collect] .collect-world .apple-6{left:9%;top:46%}body[data-game=collect] .collect-world .apple-7{left:25%;top:45%}
+body[data-game=collect] .collect-world .collect-basket{bottom:16%;width:min(65cqw,53cqh,340px)}
+body[data-game=collect] .basket-front{clip-path:inset(40% 0 0 0)}
+body[data-game=collect] .collect-world .basket-fruit{left:18%;top:20%;width:64%;height:28%;align-items:flex-start}
+body[data-game=collect] .collect-world .basket-fruit .math-object{width:14%;height:80%;flex-shrink:1}
+body[data-game=collect] .collect-world .collect-basket strong{top:88%;background:#155a44}
+body[data-game=collect] .apple-progress-item{width:clamp(23px,4vw,40px)}
+
+body[data-game=collect] .collect-world .apple-0{left:10%;top:36%}body[data-game=collect] .collect-world .apple-1{left:26%;top:35%}body[data-game=collect] .collect-world .apple-2{left:42%;top:37%}body[data-game=collect] .collect-world .apple-3{left:58%;top:35%}body[data-game=collect] .collect-world .apple-4{left:74%;top:37%}body[data-game=collect] .collect-world .apple-5{left:90%;top:35%}body[data-game=collect] .collect-world .apple-6{left:9%;top:46%}body[data-game=collect] .collect-world .apple-7{left:25%;top:45%}
+body[data-game=puzzle] .puzzle-game.puzzle-complete{grid-template-rows:minmax(0,1fr) 0 30px}body[data-game=puzzle] .puzzle-complete .puzzle-tray{padding:0;overflow:hidden}
+@media(max-width:700px){body[data-game=puzzle] .puzzle-game.puzzle-complete{grid-template-rows:auto 0 30px}}
+
+/* Fallen leaves rest within the shallow woven basket. */
+body[data-game=collect] .collect-world .collect-basket{bottom:17%;width:min(68cqw,57cqh,380px)}
+body[data-game=collect] .basket-front{clip-path:inset(62% 0 0 0)}
+body[data-game=collect] .collect-world .basket-fruit{left:16%;top:32%;width:68%;height:24%;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0}
+body[data-game=collect] .collect-world .basket-fruit .math-object{width:22%;height:48%;flex-shrink:0}
+body[data-game=collect] .collect-world .collect-basket strong{top:88%;background:#73552f}
+body[data-game=collect] .collect-world .tree-apple{width:clamp(45px,12cqw,85px);height:clamp(45px,12cqw,85px)}
+
+/* Grip the shallow basket itself, accounting for the artwork padding. */
+body[data-game=collect] .collect-basket .serve-hand{top:54%}
+body[data-game=collect] .collect-basket .hand-left{left:5%}
+body[data-game=collect] .collect-basket .hand-right{right:5%}
+
+/* Honey Week 1: true picture thumbnails and clean counter scenes. */
+.shop-thumbnail{position:relative;display:block;width:66px;height:66px;flex-shrink:0;overflow:hidden;border:3px solid white;border-radius:16px;box-shadow:0 3px 5px #79502033;background:#fff7df}
+.shop-thumbnail img{position:absolute;max-width:none;object-fit:fill;opacity:1}
+body[data-game=collect] .collect-world{background-image:url('assets/rest-table.png');background-size:cover;background-position:center}
+body[data-game=arithmetic] .serving-plate{background:linear-gradient(135deg,#fffbed,#e2e9dc);border-color:#d5e6d8;color:#416257}
+body[data-game=arithmetic] .cookie-box{background:linear-gradient(#e5bc84,#bd8950);border-color:#efce9f;color:#563a23}
+@media(max-width:700px){.shop-thumbnail{width:48px;height:48px;border-width:2px;border-radius:10px}.side-panel .shop-thumbnail img{max-width:none}.side-panel{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+@media(min-width:701px){body[data-game=spotlight] .play-layout{max-width:min(100%,calc((100svh - 260px)*1.5 + 220px));margin-inline:auto}body[data-game=spotlight] .check-item{padding:7px}.shop-thumbnail{width:58px;height:58px}}
+
+/* Level C: eight puzzle pieces, clearer counting groups, and three-choice patterns. */
+body[data-game=puzzle] .puzzle-tray{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+body[data-game=puzzle] .puzzle-piece{width:100%;height:82px;padding:5px}
+body[data-game=pattern] .pattern-row{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));width:96%;gap:6px}
+body[data-game=pattern] .pattern-supply{gap:12px}
+body[data-game=pattern] .pattern-supply button{width:90px}
+body[data-game=pattern] .pattern-supply img{width:64px!important;height:64px!important}
+body[data-game=collect] .tree-apple{width:clamp(32px,9cqw,62px);height:clamp(36px,11cqw,68px)}
+body[data-game=collect] .apple-progress{display:grid;grid-template-columns:repeat(6,25px);gap:2px}
+body[data-game=collect] .apple-progress-item{width:25px;height:25px}
+body[data-game=collect] .basket-fruit{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(2,1fr);height:30%!important;top:38%!important;align-items:center!important}
+body[data-game=collect] .basket-fruit .math-object{width:100%!important;height:100%!important;min-width:0}
+body[data-game=arithmetic] .cookie-items{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;width:100%;align-content:center}
+body[data-game=arithmetic] .cookie-items .math-object{width:100%;height:45px;min-width:0}
+body[data-game=arithmetic] .cookie-zone{height:265px;padding:12px;min-height:0}
+@media(max-width:700px){body[data-game=puzzle] .puzzle-game{grid-template-rows:auto 165px 30px}body[data-game=puzzle] .puzzle-tray{grid-template-columns:repeat(4,minmax(0,1fr))}body[data-game=puzzle] .puzzle-piece{height:72px}body[data-game=arithmetic] #stage{height:570px}body[data-game=arithmetic] .cookie-zone{height:270px;padding:8px}body[data-game=arithmetic] .cookie-items .math-object{height:42px}body[data-game=pattern] .pattern-row{grid-template-columns:repeat(3,minmax(0,1fr));max-width:300px;gap:7px}body[data-game=pattern] .pattern-slot,body[data-game=pattern] .pattern-fixed{height:64px;width:100%}body[data-game=pattern] .pattern-supply{gap:8px}body[data-game=pattern] .pattern-supply button{width:80px}}
+body[data-game=collect] .collect-world .apple-0{left:10%;top:36%}
+body[data-game=collect] .collect-world .apple-1{left:26%;top:35%}
+body[data-game=collect] .collect-world .apple-2{left:42%;top:37%}
+body[data-game=collect] .collect-world .apple-3{left:58%;top:35%}
+body[data-game=collect] .collect-world .apple-4{left:74%;top:37%}
+body[data-game=collect] .collect-world .apple-5{left:90%;top:35%}
+body[data-game=collect] .collect-world .apple-6{left:9%;top:46%}
+body[data-game=collect] .collect-world .apple-7{left:25%;top:45%}
+body[data-game=collect] .collect-world .apple-8{left:41%;top:46%}
+body[data-game=collect] .collect-world .apple-9{left:59%;top:45%}
+body[data-game=collect] .collect-world .apple-10{left:75%;top:46%}
+body[data-game=collect] .collect-world .apple-11{left:91%;top:45%}
+body[data-game=collect] .collect-world .apple-12{left:9%;top:70%}
+body[data-game=collect] .collect-world .apple-13{left:91%;top:70%}
+body[data-game=collect] .collect-world{background-image:url('assets/rest-garden.png')}
+body[data-game=collect] .collect-world .tree-apple{width:clamp(32px,9cqw,62px);height:clamp(36px,11cqw,68px)}
+body[data-game=collect] .collect-world .basket-fruit{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(2,1fr);align-items:center}
+@media(max-width:700px){body[data-game=arithmetic] .bakery-zones{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}body[data-game=arithmetic] .cookie-zone{width:100%;min-width:0;height:270px;padding:8px}}
+
+body[data-game=pattern] .pattern-row.pattern-pairs{grid-template-columns:repeat(8,minmax(0,1fr))}
+@media(max-width:700px){body[data-game=pattern] .pattern-row.pattern-pairs{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* Keep all eight hunt clues beside the complete landscape at laptop heights. */
+@media(min-width:701px){body[data-game=spotlight] .side-panel{gap:7px}body[data-game=spotlight] .check-item{min-height:52px;padding:4px 7px}body[data-game=spotlight] .shop-thumbnail{width:42px;height:42px;flex-shrink:0}}
+
+@media(min-width:751px){body[data-game=connecting] .picnic-app{width:min(1100px,100%)}body[data-game=connecting] .connect-game{grid-template-columns:140px minmax(0,1fr);grid-template-rows:minmax(0,1fr) 50px}body[data-game=connecting] .connect-players{grid-column:1;grid-row:1;flex-direction:column;justify-content:center;padding:10px}body[data-game=connecting] .connect-players button{flex-direction:column;min-height:104px}body[data-game=connecting] .connect-board{grid-column:2;grid-row:1;align-self:center}body[data-game=connecting] .connect-footer{grid-column:1/-1;grid-row:2}}
+/* Matching rounded tabs and sockets; the clip also defines each drop target. */
+body[data-game=puzzle] .puzzle-hole{border:0;background:#fff3d7}
+body[data-game=puzzle] .puzzle-hole .puzzle-cutout{width:100%;max-width:none}
+.jigsaw-edge{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.jigsaw-edge polygon{fill:none;stroke:#fff9e6;stroke-width:3;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.puzzle-hole .jigsaw-edge polygon{stroke:#8d7654;stroke-width:2}
+.puzzle-cutout:has(.jigsaw-edge)::after{display:none}
+body[data-game=puzzle] .puzzle-piece{background:transparent;box-shadow:none;border-color:transparent}
+body[data-game=puzzle] .puzzle-piece[aria-pressed=true]{background:transparent}
+body[data-game=puzzle] .puzzle-hole.drop-hover .jigsaw-edge polygon{stroke:#5c9a41;stroke-width:5}
+@media(max-width:700px){body[data-game=puzzle] .puzzle-game{grid-template-rows:auto 185px 30px}body[data-game=puzzle] .puzzle-piece{height:82px}}
+
+/* Placed pieces keep the same clipped silhouette and seam as their sockets. */
+body[data-game=puzzle] .puzzle-hole.is-placed{background:transparent;cursor:default;opacity:1}
+body[data-game=puzzle] .puzzle-hole.is-placed .puzzle-guide{opacity:1}
+body[data-game=puzzle] .puzzle-hole.is-placed>.jigsaw-edge polygon{stroke:#645b48;stroke-width:1.5}
+
+/* Story-scene subjects retain their measured centers and generous touch areas. */
+body[data-game=spotlight] #stage .contextual-hunt .hunt-hotspot{min-width:44px;min-height:44px}

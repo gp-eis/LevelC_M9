@@ -1,0 +1,76 @@
+/* Resting Places: real cutout props, roomy touch targets and no inner scrolling. */
+body:is([data-game=pattern],[data-game=collect],[data-game=arithmetic]) #stage.baseline-stage{height:auto;min-height:0;overflow:hidden}
+.baseline-stage .rest-math{box-sizing:border-box;height:auto;min-height:560px;background:url('assets/garden-table.png') center/cover;overflow:hidden;padding:18px;gap:14px}
+.rest-math img.rest-count-object{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none}
+.rest-math .math-banner{box-shadow:0 4px 0 #8c755438;max-width:100%;box-sizing:border-box}
+.rest-math .math-action{min-height:48px;padding:10px 24px;touch-action:manipulation;flex-shrink:0;background:linear-gradient(#4c9e95,#277a76);box-shadow:0 5px 0 #1d5c6266}
+body[data-game=pattern] .rest-math .rest-pattern-row{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));max-width:1000px;width:100%;padding:18px 12px;background:#fff8e9c9;gap:8px;border:2px solid #fff4dc;box-sizing:border-box}
+body[data-game=pattern] .rest-math .rest-pattern-row.pattern-pairs{grid-template-columns:repeat(8,minmax(0,1fr))}
+.rest-math .pattern-fixed,.rest-math .pattern-slot{box-sizing:border-box;max-width:none;width:100%;height:auto;aspect-ratio:1;min-height:44px;background:linear-gradient(#fffdf6de,#e6f4f1ce);border:2px solid #c1b59b;border-radius:15px;padding:6px}
+.rest-math .pattern-slot{border-style:dashed;color:#8360ac;font-size:36px}
+.rest-math .pattern-slot.active-slot{box-shadow:0 0 0 3px #ffc266,0 5px 0 #a57e5555}
+.rest-math .pattern-slot.filled{border-style:solid;border-color:#58a490}
+body[data-game=pattern] .rest-math .pattern-supply{gap:18px;justify-content:center;flex-wrap:wrap}
+body[data-game=pattern] .rest-math .pattern-supply button{background:linear-gradient(#fffdf6,#e2f3ed);width:116px;min-height:120px;box-sizing:border-box;padding:8px;border:3px solid #fff;border-radius:22px;box-shadow:0 6px 0 #719b984f}
+body[data-game=pattern] .rest-math .pattern-supply img{width:80px!important;height:80px!important;margin:auto}
+.rest-math .pattern-supply small{font:inherit;font-size:15px;font-weight:bold;color:#315b61}
+.rest-math .pattern-supply [aria-pressed=true]{border-color:#9169ba}
+.baseline-stage .rest-math.collect-world{display:flex;position:relative;align-items:center;justify-content:flex-start;container-type:normal}
+.rest-math.collect-world .goal-card{position:relative;top:auto;left:auto;transform:none;gap:12px;min-height:58px;margin:0}
+.rest-math.collect-world .goal-card>.rest-count-object{height:47px;width:47px}
+.rest-math.collect-world .rest-cushion-pool{position:relative;inset:auto;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;width:min(100%,760px);height:auto;min-height:0;padding:12px;box-sizing:border-box;background:#fff5dfb3;border:2px solid #fff4df;border-radius:24px;pointer-events:auto}
+.rest-cushion-place{display:grid;place-items:center;min-width:0;min-height:52px;aspect-ratio:1.15}
+.rest-math.collect-world .rest-cushion-pool .tree-apple{position:relative;inset:auto;transform:none;width:100%;height:100%;max-width:78px;max-height:72px;min-width:44px;min-height:44px;aspect-ratio:1;z-index:1}
+.rest-math.collect-world .rest-cushion-pool .tree-apple:active{transform:scale(1.1)}
+.baseline-stage .rest-math.collect-world .rest-cushion-basket{position:relative;inset:auto;transform:none;width:min(100%,490px);height:258px;aspect-ratio:auto;min-height:0;margin:0;border:0;padding:0;background:none;box-shadow:none;isolation:isolate;overflow:visible}
+.rest-cushion-basket .basket-art,.rest-cushion-basket .basket-front{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.rest-cushion-basket .basket-art{z-index:0}
+body[data-game=collect] .rest-math.collect-world .rest-cushion-basket .basket-front{z-index:3;object-fit:fill;clip-path:inset(62% 0 0)}
+body[data-game=collect] .rest-math.collect-world .rest-cushion-basket .basket-fruit{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(3,47px);grid-auto-rows:47px;align-content:start;align-items:center;justify-content:center;position:absolute;left:14%;top:6%!important;width:72%;height:141px!important;min-height:0;padding:0;gap:0;z-index:2}
+body[data-game=collect] .rest-math.collect-world .basket-fruit .math-object{width:100%!important;height:47px!important;min-width:44px;min-height:44px;max-width:none;aspect-ratio:auto;filter:drop-shadow(0 3px 2px #44392944)}
+body[data-game=collect] .rest-math.collect-world .rest-cushion-basket strong{top:auto;bottom:4%;left:50%;transform:translateX(-50%);background:#7b4a25ed;color:#fff8e8;white-space:nowrap;padding:4px 12px;border-radius:12px;z-index:5;text-shadow:none;font-size:14px}
+.rest-math.collect-world .math-action{position:relative;inset:auto;transform:none}
+.rest-cushion-basket .serve-hand{bottom:-25px;width:70px;height:112px;z-index:6}.rest-cushion-basket .hand-left{left:5px}.rest-cushion-basket .hand-right{right:5px}
+.rest-math.collect-world.basket-sent .rest-cushion-basket{animation:rest-basket-lift 1.9s .5s cubic-bezier(.4,0,.5,1) both}
+@keyframes rest-basket-lift{0%{transform:translateY(0)}25%{transform:translateY(-16px) rotate(-2deg)}100%{transform:translateY(100vh) rotate(2deg)}}
+.baseline-stage .rest-math.bakery-world{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto auto;min-height:570px;gap:14px;padding:18px}
+.rest-math .math-modes button{min-height:46px;padding:8px 18px}
+.rest-change-steps{display:grid;grid-template-columns:repeat(4,11px);gap:4px}.rest-change-steps i{display:block;width:11px;height:11px;border-radius:50%;background:#39897d;box-shadow:inset 0 1px 2px #0003}
+body[data-game=arithmetic] .rest-math .bakery-zones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;width:min(100%,1100px);height:auto;max-height:none;padding:0 0 12px;overflow:visible;align-items:stretch}
+body[data-game=arithmetic] .rest-math .cookie-zone{box-sizing:border-box;width:100%;height:auto;min-height:265px;max-height:none;min-width:0;padding:14px;gap:12px;border:5px solid #f2f0df;border-radius:26px;overflow:visible;justify-content:flex-start}
+.rest-math .rest-reading-mat{background:repeating-linear-gradient(90deg,#d3e9e1 0 12px,#ddf0e7 12px 24px);box-shadow:inset 0 0 0 3px #99beb0,0 7px 0 #699b8999;color:#31594e}
+.rest-math .rest-book-box{background:linear-gradient(140deg,#f7d79f,#dba662);box-shadow:inset 0 0 0 3px #c08e51,inset 0 8px 13px #77502e33,0 7px 0 #9c6a3899;color:#674626}
+.rest-math .cookie-zone strong{font-size:17px;padding:2px 10px;background:#fff9e1aa;border-radius:9px}
+body[data-game=arithmetic] .rest-math .cookie-items{display:block;min-height:48px;width:100%;padding:0;flex:1;overflow:visible}
+.rest-math .rest-book-groups{width:100%;display:grid;gap:5px}
+.rest-math .rest-five-group{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;min-height:46px;padding:3px 4px;border-radius:10px;background:#fffdf13d;border:1px solid #fff8e366}
+body[data-game=arithmetic] .rest-math .rest-five-group .math-object{display:block;width:100%;height:55px;min-width:44px;min-height:44px;box-sizing:border-box;filter:drop-shadow(0 3px 1px #59453044)}
+.rest-math .cookie-zone b{font-size:18px;background:#fffbeac9;border-radius:10px;padding:3px 12px;margin-top:auto}
+.rest-math .rest-books-ready .rest-reading-mat{animation:rest-mat-bounce .6s ease-out both}
+.rest-math .rest-books-ready .serve-hand{bottom:-32px;animation-duration:.6s}
+@keyframes rest-mat-bounce{50%{transform:translateY(-12px) rotate(-1deg)}}
+@media(max-width:700px){
+ /* These cards have an explicit mobile height. Position the picture inside
+    the card instead of letting a percentage-height grid item size its track. */
+ body[data-game=pattern] .rest-math .rest-pattern-row :is(.pattern-fixed,.pattern-slot)>.rest-count-object{position:absolute;inset:8%;width:84%;height:84%;min-width:0;min-height:0;max-width:none;object-fit:contain}
+ .baseline-stage .rest-math{min-height:540px;padding:12px 8px;gap:12px;background-position:56% center}
+ body[data-game=pattern] .rest-math .rest-pattern-row{grid-template-columns:repeat(3,minmax(0,1fr));max-width:330px;padding:10px;gap:8px}
+ body[data-game=pattern] .rest-math .rest-pattern-row.pattern-pairs{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .rest-math .pattern-fixed,.rest-math .pattern-slot{height:auto;aspect-ratio:1.12;padding:7px;min-height:54px}
+ body[data-game=pattern] .rest-math .pattern-supply{gap:10px}
+ body[data-game=pattern] .rest-math .pattern-supply button{width:90px;min-height:99px;padding:7px}
+ body[data-game=pattern] .rest-math .pattern-supply img{width:63px!important;height:63px!important}
+ .rest-math .pattern-supply small{font-size:13px}
+ .rest-math.collect-world .rest-cushion-pool{padding:5px;gap:1px;grid-template-columns:repeat(7,minmax(0,1fr))}
+ .rest-cushion-place{min-height:44px;aspect-ratio:1}
+ .rest-math.collect-world .rest-cushion-pool .tree-apple{min-width:40px;min-height:44px}
+ .baseline-stage .rest-math.collect-world .rest-cushion-basket{height:250px;width:min(100%,400px)}
+ body[data-game=collect] .rest-math.collect-world .rest-cushion-basket .basket-fruit{grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(3,44px);left:12%;width:76%;top:8%!important;grid-auto-rows:44px;height:132px!important}
+ body[data-game=collect] .rest-math.collect-world .basket-fruit .math-object{height:44px!important}
+ .baseline-stage .rest-math.bakery-world{min-height:0;padding:12px 8px;gap:10px}
+ body[data-game=arithmetic] .rest-math .bakery-zones{grid-template-columns:1fr;gap:15px;padding:0 4px 10px}
+ body[data-game=arithmetic] .rest-math .cookie-zone{height:auto;min-height:130px;padding:9px;gap:7px;border-width:4px}
+ body[data-game=arithmetic] .rest-math .rest-five-group .math-object{height:49px;min-height:44px;min-width:44px}
+ .rest-math .cookie-zone strong{font-size:15px}.rest-math .cookie-zone b{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){.rest-math.collect-world.basket-sent .rest-cushion-basket,.rest-math .rest-books-ready .rest-reading-mat{animation:none}}

@@ -1,0 +1,20 @@
+/* Two new closed, curved picture outlines, kept within a richly lit resting room. */
+body[data-game=abc] .worksheet-area,body[data-game=numbers] .worksheet-area{background:url('assets/garden-table.png') center/cover no-repeat}
+.picture-dots-game{background:#f3e6d6;grid-template-rows:44px minmax(0,1fr) 42px}
+.picture-dots-heading,.picture-dots-hint{background:linear-gradient(#fffaf0,#f9ecd5);color:#315b60}
+.picture-dots-heading b{background:#d2ece4;color:#315b60;box-shadow:0 2px 0 #7ca89c55}
+.picture-dots-board{background:radial-gradient(ellipse at 50% 50%,#fff8e8ec 0%,#fff8e8cd 48%,#fff8e87a 66%,#fff8e800 82%)}
+.picture-dots-board.is-complete{background:radial-gradient(ellipse at 50% 60%,#fff8e885,#fff8e824 62%,transparent 82%)}
+body[data-game=abc] .picture-joined-line,body[data-game=numbers] .picture-joined-line{stroke:#6c5847;stroke-width:4;filter:drop-shadow(0 1px 0 #fff6dc)}
+body[data-game=abc] .is-complete .picture-joined-line,body[data-game=numbers] .is-complete .picture-joined-line{stroke:#806543;stroke-width:3}
+.picture-dots-board .dot-label{font-size:17px;line-height:21px;padding:0 3px;background:#fffaf0;border:1px solid white;color:#31535b;box-shadow:0 2px 2px #694f4429}
+.picture-dots-board .picture-dot.is-next .dot-label{background:#ffe18b;box-shadow:0 0 0 2px #fffaf0,0 3px 5px #694f4429}
+.picture-dots-board .picture-dot.is-joined{color:#3c9c8d}
+.picture-dots-board .picture-dot{width:42px;height:44px;font-size:17px}
+.picture-dots-board .dot-point{width:8px;height:8px}
+.worksheet-details .chair-seam{opacity:.8}
+.is-complete .lamp-glow{animation:rest-lamp-glow 2s ease-in-out infinite alternate}
+@keyframes rest-lamp-glow{from{opacity:.55}to{opacity:1}}
+@media(min-width:701px){body[data-game=abc] #stage,body[data-game=numbers] #stage{height:clamp(490px,71svh,720px)}.picture-dots-board{width:min(680px,calc((71svh - 110px)*1.2));max-width:680px}}
+@media(max-width:700px){body[data-game=abc] #stage,body[data-game=numbers] #stage{height:445px}.worksheet-area{padding:7px 1px}.picture-dots-board{max-width:100%;width:100%;max-height:none}.picture-dots-board .picture-dot{width:38px;height:42px}.picture-dots-board .dot-label{font-size:15px;line-height:19px;padding:0 2px}.picture-dot .dot-label{bottom:calc(50% + 8px)}.picture-dots-hint{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.is-complete .lamp-glow{animation:none}}

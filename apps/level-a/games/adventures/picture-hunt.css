@@ -1,0 +1,79 @@
+.in-game[data-game=spotlight] .stage{display:block;padding:0;overflow:hidden}
+.picture-hunt{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,23%);height:100%;min-height:0;background:#e9f5dc}
+.hunt-scene{position:relative;min-width:0;min-height:0;overflow:hidden;background:#a7d8c3}
+.hunt-art-frame{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);overflow:visible}
+.hunt-photo{display:block;width:100%;height:100%;object-fit:fill;user-select:none}
+.hunt-art-frame .hunt-object{width:clamp(34px,4vw,56px);height:clamp(34px,4vw,56px);border:2px solid transparent}
+.hunt-art-frame .hunt-large-object{width:clamp(44px,8vw,125px);height:clamp(34px,7vw,100px);z-index:1}
+.hunt-art-frame .hunt-object.is-target{z-index:3}
+.hunt-art-frame .hunt-object:hover,.hunt-art-frame .hunt-object:focus-visible{background:#fff9d055;outline:3px solid #fff9d0}
+.hunt-art-frame .hunt-object.found{background:#e8f9d278;outline:3px solid #6d9b63}
+.hunt-wrong-mark{display:none;position:absolute;z-index:5;transform:translate(-50%,-50%);width:38px;height:38px;line-height:31px;text-align:center;border:3px solid #fff;border-radius:50%;background:#df6c71;color:white;font-size:34px;font-weight:900;pointer-events:none;box-shadow:0 4px 10px #592d3255}
+.hunt-wrong-mark.show{display:block;animation:huntXShake .42s ease-in-out infinite alternate}
+@keyframes huntXShake{from{translate:-4px 0}to{translate:4px 0}}
+@media(prefers-reduced-motion:reduce){.hunt-wrong-mark.show{animation:none}}
+.hunt-land{position:absolute;inset:0;width:100%;height:100%}
+.scene-sign{position:absolute;top:5%;left:42%;transform:rotate(-4deg);font-size:clamp(14px,2vw,24px);font-weight:900;letter-spacing:.1em;color:#597361;background:#fff8dfd9;padding:8px 14px;border-radius:10px;pointer-events:none}
+.hunt-object{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:clamp(44px,5vw,68px);height:clamp(44px,5vw,68px);border:0;border-radius:50%;background:transparent;padding:4px;cursor:pointer;transition:transform .15s,background .15s;z-index:2;touch-action:manipulation}
+.hunt-object:hover,.hunt-object:focus-visible{transform:translate(-50%,-50%) scale(1.13);background:#fff9d0a8;outline:3px solid #fff9d0}
+.hunt-object svg{width:100%;height:100%;filter:drop-shadow(0 2px 2px #244c4933)}
+.hunt-object.found{background:#e5f5bd;outline:3px solid #6d9b63}
+.found-ring{display:none;position:absolute;right:-5px;top:-9px;width:22px;height:22px;border-radius:50%;background:#659b6d;color:white;font-size:15px;font-weight:900}
+.hunt-object.found .found-ring{display:block}
+.hunt-list{padding:clamp(12px,2vw,28px);background:#fff9e9;border-left:5px solid #fff;display:flex;flex-direction:column;min-width:0}
+.hunt-list h3{font-size:clamp(16px,2vw,24px);line-height:1.1;margin:0 0 18px;color:#587761}
+.hunt-count{display:block;font-size:14px;margin-top:6px;color:#9c7950}
+.hunt-list ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.hunt-list li{background:white;border:2px solid #e7dcc2;border-radius:13px;padding:10px 9px;display:flex;gap:8px;align-items:center;min-height:46px;color:#5a6859;font-size:clamp(13px,1.5vw,18px);font-weight:800}
+.hunt-list li.crossed{background:#e4f2d9;color:#718974;text-decoration:line-through;text-decoration-thickness:2px}
+.list-check{font-size:22px;color:#77a871;line-height:1}
+.list-picture{width:38px;height:38px;flex:0 0 38px;background:#f4f5e7;border-radius:9px;padding:3px}
+.list-name{min-width:0}
+.hunt-list li.crossed .list-picture{opacity:.55}
+.hunt-list p{margin:auto 0 0;font-size:12px;color:#8f947e}
+@media(max-width:670px){.picture-hunt{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}.hunt-list{border-left:0;border-top:4px solid white;padding:9px 12px}.hunt-list h3{font-size:14px;margin:0 0 6px}.hunt-count{display:inline;margin-left:9px}.hunt-list ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.hunt-list li{font-size:12px;min-height:44px;padding:3px 5px;gap:4px}.hunt-list p{display:none}.hunt-object{width:44px;height:44px}.list-picture{width:31px;height:31px;flex-basis:31px}.list-check{font-size:18px}}
+@media(max-height:450px) and (min-width:671px){.hunt-list{padding:8px}.hunt-list h3{font-size:15px;margin-bottom:7px}.hunt-list ul{gap:4px}.hunt-list li{min-height:34px;padding:3px 6px;font-size:12px}.hunt-list p{display:none}.hunt-object{width:44px;height:44px}}
+
+.hunt-art-frame .hunt-object.traced-object,.hunt-art-frame .hunt-object.traced-object:hover,.hunt-art-frame .hunt-object.traced-object:focus-visible{min-width:0;min-height:0;max-width:none;max-height:none;transform:none;padding:0;border:0;border-radius:0;transition:none}
+.traced-object .found-ring{left:50%;top:50%;right:auto;transform:translate(-50%,-50%);font-size:16px;width:18px;height:18px}
+
+
+.hunt-art-frame .hunt-object .found-ring{display:none}
+.hunt-found-mark{position:absolute;z-index:6;transform:translate(-50%,-50%);pointer-events:none;width:25px;height:25px;border:2px solid white;border-radius:50%;display:grid;place-items:center;background:#559862;color:white;font-size:17px;font-weight:900;line-height:1;box-shadow:0 2px 4px #34593244}
+
+
+.hunt-art-frame .hunt-object,.hunt-art-frame .hunt-object:hover,.hunt-art-frame .hunt-object:focus-visible{transform:translate(-50%,-50%);transition:none}
+.hunt-art-frame .hunt-object:hover{background:transparent;outline:none}
+.hunt-art-frame .hunt-object:focus-visible{outline:3px solid #fff9d0}
+.hunt-art-frame .hunt-object.found{outline:2px solid #559862;background:#dff4d655}
+.hunt-response{position:absolute;z-index:9;top:8px;left:50%;transform:translateX(-50%);display:none;pointer-events:none;padding:9px 16px;border:3px solid white;border-radius:15px;font-weight:900;font-size:16px;white-space:nowrap;box-shadow:0 3px 9px #29483133}
+.hunt-response.visible{display:block}.hunt-response.good{background:#e5f7d9;color:#286439}.hunt-response.try{background:#fff0e8;color:#9d393f}
+.hunt-wrong-mark.show{animation:huntXShake .12s ease-in-out 3 alternate}
+@media(prefers-reduced-motion:reduce){.hunt-wrong-mark.show{animation:none}}
+
+
+.hunt-list li.crossed{text-decoration:none}.hunt-list li.crossed .list-name{text-decoration:line-through;text-decoration-thickness:2px}.hunt-list li.crossed .list-check{color:#286439}
+
+
+.in-game[data-game=mistakes] .stage{display:block;padding:0;overflow:hidden}.mistake-target{position:absolute;transform:translate(-50%,-50%);border:0;padding:0;min-width:0;min-height:0;background:transparent;cursor:pointer;border-radius:15%;touch-action:manipulation}.mistake-target:focus-visible{outline:3px solid white;background:#ffffff44}.discovery-icon{font-size:26px;width:34px;text-align:center;flex-shrink:0}.mistakes-list .discovered{background:#e5f7d9;border-color:#87b979}.mistakes-list ul{gap:10px}
+
+
+/* One scene with the complete checklist. */
+[data-game=spotlight] .mission-number{display:none}
+[data-game=spotlight] .picture-hunt{grid-template-columns:minmax(0,1fr) minmax(290px,32%)}
+[data-game=spotlight] .hunt-list{padding:12px;min-height:0;overflow:auto}
+[data-game=spotlight] .hunt-list h3{margin-bottom:8px;font-size:18px}
+[data-game=spotlight] .hunt-list ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+[data-game=spotlight] .hunt-list li{padding:5px;gap:4px;font-size:13px;min-height:43px}
+[data-game=spotlight] .list-picture{width:30px;height:30px;flex-basis:30px}
+[data-game=spotlight] .list-check{font-size:16px}
+[data-game=spotlight] .hunt-list p{display:none}
+@media(max-width:670px){
+ [data-game=spotlight] .picture-hunt{grid-template-columns:1fr;grid-template-rows:minmax(140px,1fr) auto}
+ [data-game=spotlight] .hunt-list{padding:7px;max-height:45dvh}
+ [data-game=spotlight] .hunt-list ul{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+ [data-game=spotlight] .hunt-list li{flex-wrap:wrap;justify-content:center;gap:2px;padding:3px;font-size:12px;text-align:center;min-height:55px}
+ [data-game=spotlight] .list-name{flex-basis:100%}
+ [data-game=spotlight] .list-picture{width:25px;height:25px;flex-basis:25px}
+ [data-game=spotlight] .hunt-list h3{font-size:14px;margin-bottom:5px}
+}

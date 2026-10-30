@@ -1,0 +1,52 @@
+/* Level C Week 3 picture scenes keep the complete landscape on every screen. */
+body[data-game=spotlight] #stage{min-height:0;background:#e4ead4}
+body[data-game=spotlight] .rest-hunt-layout{grid-template-columns:minmax(0,1fr) 252px;max-width:min(100%,calc((100svh - 250px)*1.5 + 252px));margin-inline:auto;align-items:center}
+body[data-game=spotlight] .contextual-hunt{aspect-ratio:3/2;max-height:none;min-height:0;background-image:url('assets/hobby-hunt-story-v2.webp');background-size:100% 100%;background-position:center}
+.rest-hunt-layout .rest-target,.rest-hunt-layout .rest-normal{width:var(--size);height:var(--height);min-width:0;min-height:0;aspect-ratio:auto;border:0;border-radius:16%;transition:none}
+.rest-hunt-layout .rest-target{z-index:2}.rest-hunt-layout .rest-target:not([data-item=chair]){z-index:3}.rest-hunt-layout .rest-normal{z-index:4}
+.rest-hunt-layout .rest-target.found{border:3px solid #ffd865;background:#fff2a01a;box-shadow:0 0 0 2px #fff9}
+.rest-hunt-layout .rest-target.found:after{font-size:20px;padding:0 5px;top:4%;right:4%}
+.rest-hunt-layout .rest-clues{align-self:stretch;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:center;gap:7px;padding:10px;background:linear-gradient(#fff6df,#ffebc5)}
+.rest-clues h3{grid-column:1/-1;margin:0 0 3px;font-size:18px;color:#5e553e}
+.rest-clues .check-item{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:91px;margin:0;padding:6px 3px;border:3px solid white;border-radius:17px;background:linear-gradient(#fff,#fffaf0);box-shadow:0 4px #cfbda476;color:#3c5967;font-size:14px;line-height:1.15;text-align:center}
+.rest-clues .shop-thumbnail{width:55px;height:55px;border-radius:12px;border:2px solid white;box-shadow:0 2px 5px #76522c33}
+.rest-clues .check-item.done{background:#daf3d6;border-color:#88c89b;box-shadow:0 3px #76a97b77}
+.rest-clues .check-item.done>span:not(.shop-thumbnail):not(.rest-clue-check){text-decoration:line-through}
+.rest-clues .check-item.done .shop-thumbnail{text-decoration:none}
+.rest-clue-check{display:none;position:absolute;right:3px;top:2px;width:21px;height:21px;border-radius:50%;background:#4b9d65;color:white;font-size:17px;line-height:21px;text-decoration:none!important}
+.rest-clues .done .rest-clue-check{display:block}
+body[data-game=mistakes] .rest-mistakes{background:#e3e7d0}
+.rest-mistakes .hunt-scene{background:#e3e7d0}
+.rest-mistakes .hunt-photo{object-fit:contain;pointer-events:none}
+.rest-mistakes .mistake-target{min-width:0;min-height:0;z-index:2}
+.rest-mistakes .mistake-target[data-mistake]{z-index:3}
+.rest-mistakes .hunt-list{justify-content:center;background:linear-gradient(#fff6df,#ffebc5);padding:15px}
+.rest-mistakes .hunt-list h3{font-size:20px;margin-bottom:12px;color:#5e553e}
+.rest-mistakes .hunt-list li{min-height:64px;padding:6px 8px;font-size:15px}
+.rest-mistakes .hunt-list p{margin-top:16px}
+.rest-mistakes .discovery-icon{display:grid;place-items:center;width:38px;height:38px;flex-shrink:0;border-radius:50%;border:2px solid white;background:linear-gradient(#eee7fb,#d7c8eb);color:#8c6cb3;box-shadow:0 3px #c0b0d4;font-weight:bold}
+.rest-discovery{position:relative;display:flex;align-items:center;gap:8px;min-width:0;min-height:50px;width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:left;line-height:1.15}
+.rest-discovery-check{position:absolute;right:-2px;top:-6px;color:#39874d;background:#fff;border-radius:50%;padding:0 3px}
+.rest-mistake-crop{position:relative;display:block;width:46px;height:46px;flex:0 0 46px;overflow:hidden;border:2px solid white;border-radius:12px;background:#fff6df;box-shadow:0 2px 4px #725d3833}
+.rest-mistake-crop img{position:absolute;max-width:none;object-fit:fill;pointer-events:none}
+@media(max-width:700px){
+ /* Tap zones can be larger than the drawn item; thumbnail crops retain the
+    exact artwork bounds. Separate the two small tabletop targets vertically. */
+ .rest-hunt-layout .rest-target{min-width:44px;min-height:44px}
+ 
+ 
+ body[data-game=spotlight] .rest-hunt-layout{grid-template-columns:1fr;max-width:none}
+ .rest-hunt-layout .rest-clues{grid-template-columns:repeat(4,minmax(0,1fr));padding:8px;gap:6px}
+ .rest-clues h3{font-size:16px;margin-bottom:1px}.rest-clues .check-item{min-height:86px;font-size:12px;gap:4px;padding:5px 2px;border-width:2px;border-radius:14px}
+ .rest-clues .shop-thumbnail{width:48px;height:48px;border-radius:10px}.rest-clues .check-item>span:not(.shop-thumbnail):not(.rest-clue-check){min-height:27px;display:flex;align-items:center;justify-content:center}
+ .rest-hunt-layout .rest-target.found{border-width:2px}.rest-hunt-layout .rest-target.found:after{font-size:15px;padding:0 3px;border-width:2px}
+ body[data-game=mistakes] .rest-mistakes .hunt-list{padding:10px}
+ body[data-game=mistakes] .rest-mistakes .hunt-list ul{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+ body[data-game=mistakes] .rest-mistakes .hunt-list li{padding:5px 2px;min-height:85px;font-size:11px;gap:4px;text-align:center}
+ .rest-discovery{flex-direction:column;gap:3px;justify-content:center;text-align:center;min-height:74px}.rest-mistake-crop{width:38px;height:38px;flex-basis:38px;border-radius:9px}.rest-discovery-check{top:-2px;right:0;font-size:14px}
+ .rest-mistakes .hunt-list h3{font-size:17px}.rest-mistakes .discovery-icon{width:34px;height:34px;font-size:23px}
+}
+
+/* Story-scene subjects retain their measured centers and generous touch areas. */
+body[data-game=spotlight] #stage .contextual-hunt .hunt-hotspot{min-width:44px;min-height:44px}
+body[data-game=mistakes] #stage .mistake-target{min-width:44px;min-height:44px}body[data-game=mistakes] #stage .mistake-target[data-mistake]{z-index:3}

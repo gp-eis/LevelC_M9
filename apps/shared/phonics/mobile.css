@@ -1,0 +1,13 @@
+
+[hidden]{display:none!important}.gp-navigation__links{display:flex;gap:8px}.gp-navigation__links a{min-width:44px;min-height:44px}
+.success-modal{overflow:auto}.success-card{max-height:90svh;overflow:auto}
+@media(max-width:600px){.game-list-shell{padding-top:16px!important}.game-card-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.game-nav-card{min-width:0;padding:14px 8px}.game-nav-card__icon{max-width:85px}.game-nav-card__label{font-size:1rem}.game-nav-card__hint{font-size:.82rem}.gp-navigation__links a{width:44px;padding:8px!important}.gp-navigation__links span:not(.gp-navigation__icon){display:none}.letter-tile,.letter-btn{touch-action:manipulation}}
+
+.reward-modal{position:fixed;inset:0;z-index:2500;display:grid;place-items:center;padding:16px;background:#19365cc9}
+.reward-dialog{position:relative;width:min(620px,100%);max-height:calc(100svh - 32px);overflow:auto;padding:24px 18px;border:6px solid white;border-radius:30px;background:linear-gradient(#fff8d5,#e2f7ff);text-align:center;box-shadow:0 10px 0 #6ca8c1}
+.reward-dialog h2{color:#8a58b5;margin:6px 42px 18px;font-size:clamp(1.6rem,5vw,2.3rem)}
+.reward-dialog video{display:block;width:100%;max-height:55svh;object-fit:contain;border-radius:20px;background:#fff}
+.reward-dialog button{min-height:48px;margin:14px 5px 0;padding:10px 18px;border:3px solid white;border-radius:20px;background:#ffd367;color:#77531d;box-shadow:0 4px 0 #d6a34a;font-weight:900;cursor:pointer}
+.reward-dialog .reward-close{position:absolute;top:8px;right:8px;width:44px;min-height:44px;margin:0;padding:0;background:#ff94ac;color:#85354e;font-size:1.5rem}
+.reward-dialog .reward-done{background:#a9e8c6;color:#2c7353;box-shadow:0 4px 0 #68b792}
+.reward-fallback{font-size:2rem;color:#8964bd}

@@ -1,0 +1,542 @@
+/* Basket overlays share the same proportional image fit on every screen. */
+body[data-game=collect] #stage .collect-world :is(.basket-art,.basket-front){object-fit:contain}
+
+/* Desktop math surfaces. Keep the mobile activities and their touch layout intact. */
+@media (min-width:901px) {
+  body:is([data-game=pattern],[data-game=collect],[data-game=arithmetic]) :is(.stage,#stage.baseline-stage) {
+    min-width:0;
+    min-height:0;
+    height:100%;
+    padding:0;
+    overflow:hidden;
+  }
+  body:is([data-game=pattern],[data-game=collect],[data-game=arithmetic]) .math-play {
+    box-sizing:border-box;
+    width:100%;
+    max-width:none;
+    height:100%;
+    min-height:0;
+    min-width:0;
+    padding:clamp(16px,2vw,30px);
+    gap:clamp(12px,1.4vw,22px);
+  }
+  body:is([data-game=pattern],[data-game=collect],[data-game=arithmetic]) .math-banner {
+    font-size:clamp(18px,1.45vw,23px);
+    line-height:1.25;
+    padding:9px 20px;
+  }
+  body:is([data-game=collect],[data-game=arithmetic]) .math-action {
+    min-height:50px;
+    padding:10px 30px;
+    font-size:20px;
+  }
+
+  /* Sequence, choices and progress each have a reserved track. */
+  body[data-game=pattern] :is(.stage,#stage.baseline-stage) .math-play.pattern-world {
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto minmax(0,1fr) auto auto;
+    align-items:center;
+    justify-items:center;
+    min-height:0;
+    height:100%;
+    container-type:size;
+    gap:20px;
+    padding:18px 22px;
+  }
+  body[data-game=pattern] :is(.stage,#stage.baseline-stage) .pattern-row {
+    --pattern-columns:6;
+    display:grid;
+    grid-template-columns:repeat(var(--pattern-columns),minmax(0,1fr));
+    box-sizing:border-box;
+    width:100%;
+    max-width:1450px;
+    min-width:0;
+    height:100%;
+    min-height:0;
+    max-height:247px;
+    container-type:size;
+    padding:16px;
+    gap:clamp(8px,1vw,16px);
+    align-self:center;
+    align-items:center;
+  }
+  body[data-game=pattern] :is(.stage,#stage.baseline-stage) .pattern-row:has(>:nth-child(8)) {--pattern-columns:8}
+  body[data-game=pattern] :is(.stage,#stage.baseline-stage) .pattern-row:has(>:nth-child(9)) {--pattern-columns:9}
+  body[data-game=pattern] :is(.stage,#stage.baseline-stage) :is(.pattern-fixed,.pattern-slot) {
+    position:relative;
+    box-sizing:border-box;
+    justify-self:center;
+    width:min(100%,215px,100cqh);
+    min-width:0;
+    max-width:none;
+    height:auto;
+    max-height:none;
+    min-height:0;
+    aspect-ratio:1;
+    border-radius:20px;
+    font-size:clamp(36px,3.5vw,58px);
+    padding:8px;
+    overflow:hidden;
+  }
+  body[data-game=pattern] :is(.stage,#stage.baseline-stage) .pattern-row :is(.picnic-pattern-object,.rest-count-object,.toy-picture) {
+    position:absolute;
+    inset:8%;
+    display:block;
+    width:84%;
+    height:84%;
+    min-width:0;
+    min-height:0;
+    object-fit:contain;
+  }
+  body[data-game=pattern] :is(.stage,#stage.baseline-stage) .pattern-supply {
+    display:flex;
+    justify-content:center;
+    align-items:stretch;
+    gap:clamp(18px,2vw,34px);
+    flex-wrap:nowrap;
+    min-height:0;
+    padding:0;
+    margin:0;
+  }
+  body[data-game=pattern] :is(.stage,#stage.baseline-stage) .pattern-supply button {
+    --pattern-sprite-height:clamp(80px,6.5vw,104px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    box-sizing:border-box;
+    width:clamp(128px,10vw,165px);
+    min-height:120px;
+    padding:10px 12px;
+    border-radius:24px;
+  }
+  body[data-game=pattern] :is(.stage,#stage.baseline-stage) .pattern-supply :is(img,.toy-picture) {
+    width:var(--pattern-sprite-height)!important;
+    height:var(--pattern-sprite-height)!important;
+    margin:0 auto;
+    display:block;
+    object-fit:contain;
+  }
+  body[data-game=pattern] :is(.stage,#stage.baseline-stage) .pattern-supply small {
+    font-size:18px;
+    line-height:1.15;
+  }
+  body[data-game=pattern] .math-play>.math-banner:last-child {
+    padding:5px 18px;
+    font-size:18px;
+  }
+
+  /* Give both counting areas equal, useful space and reserve a real action row. */
+  body[data-game=arithmetic] .math-play.bakery-world {
+    display:grid;
+    min-height:0;
+    height:100%;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    grid-template-rows:54px minmax(0,1fr) 54px;
+    align-items:center;
+    justify-items:center;
+    gap:12px 18px;
+  }
+  body[data-game=arithmetic] .bakery-world .math-modes {
+    grid-column:1;
+    grid-row:1;
+    justify-self:end;
+    margin:0;
+  }
+  body[data-game=arithmetic] .bakery-world .math-modes button {
+    min-height:48px;
+    padding:8px 22px;
+    font-size:19px;
+  }
+  body[data-game=arithmetic] .bakery-world .goal-card {
+    grid-column:2;
+    grid-row:1;
+    position:relative;
+    inset:auto;
+    transform:none;
+    justify-self:start;
+    margin:0;
+    min-height:48px;
+  }
+  body[data-game=arithmetic] .bakery-world .bakery-zones {
+    box-sizing:border-box;
+    display:grid;
+    grid-column:1/-1;
+    grid-row:2;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    align-items:stretch;
+    gap:clamp(24px,3vw,52px);
+    width:100%;
+    max-width:1400px;
+    height:100%;
+    min-height:0;
+    max-height:none;
+    padding:4px 12px 14px;
+    overflow:visible;
+  }
+  body[data-game=arithmetic] .bakery-world .cookie-zone {
+    box-sizing:border-box;
+    width:100%;
+    min-width:0;
+    height:100%;
+    min-height:0;
+    max-height:none;
+    padding:clamp(12px,1.6vw,25px);
+    gap:8px;
+    justify-content:space-between;
+    overflow:visible;
+  }
+  body[data-game=arithmetic] .bakery-world .cookie-zone strong,
+  body[data-game=arithmetic] .bakery-world .cookie-zone b {
+    font-size:clamp(19px,1.6vw,24px);
+    line-height:1.15;
+  }
+  body[data-game=arithmetic] .bakery-world .cookie-items {
+    box-sizing:border-box;
+    display:flex;
+    flex-wrap:wrap;
+    align-content:center;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:auto;
+    min-height:0;
+    gap:5px;
+    overflow:visible;
+  }
+  body[data-game=arithmetic] .bakery-world .cookie-items>.math-object {
+    width:clamp(80px,7.8vw,118px);
+    height:clamp(80px,7.8vw,118px);
+    max-width:100%;
+    min-width:0;
+    min-height:0;
+    aspect-ratio:1;
+  }
+  body[data-game=arithmetic] .bakery-world .cookie-items:has(>:nth-child(6)) {
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    justify-items:center;
+    gap:3px;
+  }
+  body[data-game=arithmetic] .bakery-world .cookie-items:has(>:nth-child(6))>.math-object {
+    width:100%;
+    height:clamp(63px,7.8dvh,90px);
+    max-width:100px;
+    aspect-ratio:auto;
+  }
+  body[data-game=arithmetic] .bakery-world>.math-action {
+    grid-column:1/-1;
+    grid-row:3;
+    align-self:center;
+    margin:0;
+    position:relative;
+    inset:auto;
+    transform:none;
+  }
+
+  /* Fit the complete authored scene; never spread its pixels across a wide panel. */
+  body[data-game=collect] {--collect-ratio:1.5}
+  body.in-game[data-game=collect] {--collect-ratio:1.3333333333}
+  body.in-game[data-game=collect] .play-shell,
+  body[data-game=collect] .picnic-app>.play-card {
+    justify-self:center;
+    width:min(100%,calc((100dvh - 265px)*var(--collect-ratio) + 10px));
+    max-width:none;
+  }
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) {
+    display:grid;
+    place-items:center;
+    container-type:size;
+    background:#fff7e4;
+  }
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) .math-play.collect-world {
+    box-sizing:border-box;
+    width:min(100cqw,calc(100cqh*var(--collect-ratio)));
+    height:auto;
+    min-height:0;
+    max-width:100%;
+    aspect-ratio:var(--collect-ratio);
+    flex:none;
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    overflow:hidden;
+  }
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) .collect-world:not(.rest-math) .goal-card {
+    top:3%;
+    min-height:50px;
+  }
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) .collect-world:not(.rest-math) .tree-apple {
+    width:clamp(44px,9cqw,88px);
+    height:clamp(44px,9cqw,88px);
+  }
+  body[data-game=collect] #stage.baseline-stage .collect-world:has(.fruit-patch[aria-label="Acorns to collect"]) .tree-apple {
+    width:min(8cqw,10cqh,72px);
+    height:min(8cqw,10cqh,72px);
+  }
+  body[data-game=collect] #stage.baseline-stage .collect-world:has(.fruit-patch[aria-label="Acorns to collect"]) .apple-8 {
+    left:32%;
+    top:70%;
+  }
+  body[data-game=collect] #stage.baseline-stage .collect-world:has(.fruit-patch[aria-label="Acorns to collect"]) .apple-9 {
+    left:68%;
+    top:70%;
+  }
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) .collect-world:not(.rest-math) .collect-basket {
+    width:min(48cqw,48cqh,340px);
+    height:auto;
+    min-height:0;
+    aspect-ratio:1;
+  }
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) .collect-world:not(.rest-math) .collect-basket:has(>img:is([src$="earth-bin.png"],[src$="meadow-basket.png"],[src$="honey-basket.png"],[src$="forest-basket.png"])) {
+    width:min(54cqw,66cqh,440px);
+    aspect-ratio:3/2;
+  }
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) .collect-world:not(.rest-math) .collect-basket strong {
+    font-size:16px;
+  }
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) .collect-world:not(.rest-math) .apple-progress-item {
+    width:clamp(28px,3.5cqw,40px);
+    height:clamp(28px,3.5cqw,40px);
+  }
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) .collect-world:not(.rest-math) .math-action {
+    bottom:3%;
+    min-height:48px;
+  }
+  body.in-game[data-game=collect] #stage.stage .math-play.collect-world:not(.rest-math) .collect-basket {
+    top:auto;
+    bottom:16%;
+    width:min(54cqw,108cqh,560px);
+    height:auto;
+    aspect-ratio:2;
+    padding:0;
+  }
+  body.in-game[data-game=collect] .stage .collect-world .basket-fruit .math-object {
+    max-width:78px;
+  }
+
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) .collect-world :is(.basket-art,.basket-front) {
+    object-fit:contain;
+  }
+
+  /* Resting Places: a supply table beside the basket, with all 14 pieces visible. */
+  body[data-game=collect] #stage.baseline-stage .rest-math.collect-world {
+    display:grid;
+    grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+    grid-template-rows:auto minmax(0,1fr) auto;
+    align-items:center;
+    justify-items:center;
+    gap:16px 30px;
+    container-type:normal;
+  }
+  body[data-game=collect] #stage.baseline-stage .rest-math.collect-world .goal-card {
+    grid-column:1/-1;
+    grid-row:1;
+    position:relative;
+    inset:auto;
+    transform:none;
+  }
+  body[data-game=collect] #stage.baseline-stage .rest-math.collect-world .rest-cushion-pool {
+    grid-column:1;
+    grid-row:2;
+    width:100%;
+    height:auto;
+    min-height:0;
+    padding:18px;
+    gap:8px;
+    grid-template-columns:repeat(7,minmax(0,1fr));
+  }
+  body[data-game=collect] #stage.baseline-stage .rest-cushion-place {
+    min-width:0;
+    min-height:70px;
+    aspect-ratio:1;
+  }
+  body[data-game=collect] #stage.baseline-stage .rest-math.collect-world .rest-cushion-pool .tree-apple {
+    position:relative;
+    inset:auto;
+    width:100%;
+    height:100%;
+    min-width:44px;
+    min-height:44px;
+    max-width:110px;
+    max-height:110px;
+    transform:none;
+  }
+  body[data-game=collect] #stage.baseline-stage .rest-math.collect-world .rest-cushion-basket {
+    grid-column:2;
+    grid-row:2;
+    position:relative;
+    inset:auto;
+    transform:none;
+    width:min(100%,540px);
+    max-width:540px;
+    height:auto;
+    min-height:0;
+    aspect-ratio:3/2;
+    margin:0;
+    padding:0;
+  }
+  body[data-game=collect] #stage.baseline-stage .rest-math.collect-world .rest-cushion-basket .basket-fruit {
+    top:6%!important;
+    left:14%;
+    width:72%;
+    height:52%!important;
+    grid-template-rows:repeat(3,minmax(0,1fr));
+    grid-auto-rows:auto;
+    align-items:center;
+  }
+  body[data-game=collect] #stage.baseline-stage .rest-math.collect-world .rest-cushion-basket .basket-fruit .math-object {
+    width:100%!important;
+    height:100%!important;
+    min-width:0;
+    min-height:0;
+  }
+  body[data-game=collect] #stage.baseline-stage .rest-math.collect-world>.math-action {
+    grid-column:1/-1;
+    grid-row:3;
+    position:relative;
+    inset:auto;
+    transform:none;
+  }
+
+  /* Storybooks keep their meaningful five-item rows at every quantity to 20. */
+  body[data-game=arithmetic] #stage.baseline-stage .rest-math .cookie-items {
+    display:block;
+    flex:1;
+  }
+  body[data-game=arithmetic] #stage.baseline-stage .rest-math .rest-book-groups {
+    height:auto;
+    min-height:0;
+    align-content:center;
+    gap:6px;
+  }
+  body[data-game=arithmetic] #stage.baseline-stage .rest-math .rest-five-group {
+    min-height:0;
+    gap:7px;
+    padding:4px 8px;
+  }
+  body[data-game=arithmetic] #stage.baseline-stage .rest-math .rest-five-group .math-object {
+    height:clamp(52px,7.5dvh,78px);
+    min-height:44px;
+    min-width:44px;
+  }
+}
+
+/* The shallow hobby baskets hold all fourteen counters in two visible rows.
+   Keep them below the back rim and behind the front lip. */
+body[data-game=collect] #stage.baseline-stage .rest-math.collect-world .rest-cushion-basket:has(.basket-fruit img:is([src$="hobby-ball.png"],[src$="garden-seed.png"])) .basket-fruit {
+  left:10%;
+  width:80%;
+  top:25%!important;
+  height:36%!important;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  grid-auto-rows:auto;
+}
+body[data-game=collect] #stage.baseline-stage .rest-math.collect-world .rest-cushion-basket:has(.basket-fruit img:is([src$="hobby-ball.png"],[src$="garden-seed.png"])) .basket-fruit .math-object {
+  width:100%!important;
+  height:100%!important;
+  min-width:0;
+  min-height:0;
+}
+
+/* C1 needs room for five-item counting rows on a phone, just as the other sets do. */
+@media (max-width:900px) {
+  body[data-game=arithmetic] #stage.baseline-stage:has(.bakery-world img[src$="forest-pinecone.png"]) {
+    height:auto;
+    min-height:0;
+    overflow:hidden;
+  }
+  body[data-game=arithmetic] .bakery-world:has(img[src$="forest-pinecone.png"]) {
+    box-sizing:border-box;
+    height:auto;
+    min-height:0;
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto auto auto auto;
+    padding:12px 10px;
+    gap:10px;
+  }
+  body[data-game=arithmetic] .bakery-world:has(img[src$="forest-pinecone.png"]) .bakery-zones {
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:16px;
+    width:100%;
+    height:auto;
+    padding:4px 5px 12px;
+    overflow:visible;
+  }
+  body[data-game=arithmetic] .bakery-world:has(img[src$="forest-pinecone.png"]) .cookie-zone {
+    width:100%;
+    height:auto;
+    min-width:0;
+    min-height:112px;
+    max-height:none;
+    padding:10px;
+    gap:7px;
+    border-radius:22px;
+  }
+  body[data-game=arithmetic] .bakery-world:has(img[src$="forest-pinecone.png"]) .cookie-items {
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:4px;
+    justify-items:center;
+    align-content:center;
+    min-height:44px;
+    width:100%;
+  }
+  body[data-game=arithmetic] .bakery-world:has(img[src$="forest-pinecone.png"]) .cookie-items .math-object {
+    width:100%;
+    height:52px;
+    min-width:44px;
+    min-height:44px;
+    max-width:66px;
+  }
+  body[data-game=arithmetic] .bakery-world:has(img[src$="forest-pinecone.png"]) :is(.math-action,.math-modes button) {
+    min-height:46px;
+  }
+}
+
+@media (min-width:901px) and (max-height:800px) {
+  body[data-game=arithmetic] .math-play.bakery-world {
+    padding:12px 18px;
+    gap:8px 14px;
+  }
+  body[data-game=arithmetic] .bakery-world .cookie-zone {
+    padding:10px 14px;
+    gap:5px;
+  }
+  body[data-game=arithmetic] .bakery-world .cookie-items>.math-object {
+    width:80px;
+    height:80px;
+  }
+  body[data-game=arithmetic] .bakery-world .cookie-items:has(>:nth-child(6))>.math-object {
+    height:80px;
+  }
+  body[data-game=arithmetic] .bakery-world .cookie-items:has(>:nth-child(16))>.math-object {
+    height:56px;
+  }
+  body[data-game=arithmetic] #stage.baseline-stage .rest-math .rest-book-groups {
+    gap:3px;
+  }
+  body[data-game=arithmetic] #stage.baseline-stage .rest-math .rest-five-group {
+    padding:2px 5px;
+    gap:5px;
+  }
+  body[data-game=arithmetic] #stage.baseline-stage .rest-math .rest-five-group .math-object {
+    height:44px;
+  }
+}
+
+/* SVG frames trim transparent atlas margins; meet keeps every toy in its original proportions. */
+body.in-game[data-game=pattern] .toy-picture {overflow:hidden;display:block;width:100%;height:100%;pointer-events:none;filter:drop-shadow(0 4px 3px #624d3033)}
+@media(max-width:900px){body.in-game[data-game=pattern] .pattern-supply .toy-picture {width:65px;height:65px;margin:auto}}
+
+/* Portrait touch stages crop scenery proportionally instead of squashing landscape art. */
+@media(max-width:900px){
+  body[data-game=collect] :is(.stage,#stage.baseline-stage) .math-play.collect-world {
+    background-size:cover;
+  }
+}

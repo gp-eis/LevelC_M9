@@ -1,0 +1,45 @@
+.writing-layout.sentence-pairs{display:block;text-align:left}
+.sentence-pairs .trace-row{display:grid;grid-template-columns:minmax(130px,.65fr) minmax(0,1fr);align-items:center;gap:22px;margin:16px 0 24px}
+.sentence-picture{width:100%;max-width:300px;justify-self:center;padding:12px;background:white;border-radius:22px;box-sizing:border-box}
+.sentence-picture-crop{position:relative;width:100%;overflow:hidden}
+.sentence-picture-crop img{position:absolute;top:0;max-width:none;height:auto;display:block}
+.sentence-practice-controls{min-width:0}
+.sentence-practice-controls h3{margin-top:0}
+/* Equal visual breathing room on either side of the page-number bar. */
+main .literacy-week-heading{margin-bottom:0;padding-bottom:0}
+main .literacy-week-heading .week-tools{margin-bottom:0!important}
+main .literacy-page-nav{margin-top:24px!important;margin-bottom:24px!important}
+body.consistent-selection .selection-choices>.gp-eis-link-row{margin:0 0 22px;gap:6px}
+@media(max-width:600px){
+ .sentence-pairs .trace-row{grid-template-columns:1fr;gap:12px}
+ .sentence-picture{max-width:170px;padding:8px}
+}
+body.consistent-selection #main{box-sizing:border-box;width:min(1240px,100%);max-width:1240px;margin-inline:auto;padding-inline:16px}
+body.consistent-week-selection #main>.month-label{text-align:center;width:100%;margin:12px 0;font:800 1rem var(--font-friendly,sans-serif);color:#416280}
+body.consistent-week-selection .week-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin:18px 0 26px}
+body.consistent-week-selection .week-card{box-sizing:border-box;padding:9px;border-width:7px;border-radius:38px}
+body.consistent-week-selection .week-card .week-card__inner{box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;height:330px;min-height:330px;padding:16px}
+body.consistent-week-selection .week-card img{width:150px;height:150px;max-width:100%;object-fit:contain;flex-shrink:0}
+body.consistent-week-selection .week-card strong{font-size:16px;line-height:1.4;margin:0;padding:3px 12px}
+body.consistent-week-selection .week-card .week-card__lesson{display:flex;align-items:center;justify-content:center;min-height:3.6em;font-size:22px;line-height:1.2;text-align:center;font-weight:700;text-wrap:balance}
+body.consistent-selection .gp-eis-link-row{display:flex;justify-content:center;margin:24px 0 18px}
+body.consistent-selection .carousel-wrap{padding:6px 60px 12px}
+body.consistent-selection .learning-carousel{gap:26px;padding:12px max(10px,calc(50% - 175px)) 24px}
+body.consistent-selection .learning-card{box-sizing:border-box;flex:0 0 350px!important;width:350px!important;min-height:clamp(300px,43svh,390px);padding:20px 22px 18px;gap:10px}
+body.consistent-selection .learning-card h2{margin:0;min-height:1.2em;line-height:1.2;font-size:clamp(27px,4svh,38px)}
+body.consistent-selection .learning-card img{height:clamp(190px,30svh,250px);max-width:100%;object-fit:contain}
+body.consistent-selection .carousel-arrow{box-sizing:border-box;width:52px;height:52px;top:50%;transform:translateY(-50%);display:grid;place-items:center;padding:0;font-size:30px}
+body.consistent-selection .carousel-dots{display:flex;justify-content:center;gap:12px;margin:14px auto}
+body.consistent-selection .all-weeks-btn{margin-top:14px;min-height:54px;box-sizing:border-box}
+@media(max-width:980px){body.consistent-week-selection .week-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){
+ body.consistent-week-selection .week-grid{grid-template-columns:1fr}
+ body.consistent-week-selection .week-card .week-card__inner{display:grid;grid-template-columns:40% minmax(0,1fr);grid-template-rows:1fr auto;height:210px;min-height:210px;gap:8px 14px;padding:18px 14px}
+ body.consistent-week-selection .week-card img{grid-column:1;grid-row:1;width:110px;height:110px;align-self:end;justify-self:center}
+ body.consistent-week-selection .week-card strong{grid-column:1;grid-row:2;align-self:start;justify-self:center}
+ body.consistent-week-selection .week-card .week-card__lesson{grid-column:2;grid-row:1/3;min-height:0;font-size:22px;text-align:left;justify-content:flex-start}
+ body.consistent-selection .carousel-wrap{padding-inline:28px}
+ body.consistent-selection .learning-carousel{gap:18px;padding-inline:calc(50% - min(155px,35vw))}
+ body.consistent-selection .learning-card{flex:0 0 min(310px,70vw)!important;width:min(310px,70vw)!important}
+ body.consistent-selection .carousel-arrow{width:44px;height:44px}
+}

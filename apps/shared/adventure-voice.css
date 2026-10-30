@@ -1,0 +1,6 @@
+/* Picture cues remain visual and can also be tapped to hear their names. */
+[data-voice-name]{cursor:pointer;position:relative}
+[data-voice-name]:focus-visible{outline:3px solid #278aca;outline-offset:2px}
+.check-item[data-voice-name]::after,.hunt-list li[data-voice-name]::after{content:'🔊';font-size:12px;margin-left:auto;flex-shrink:0}
+#listen.is-speaking{box-shadow:0 4px 0 #379f9c,0 0 0 4px #a5eee4}
+@media(max-width:670px){.hunt-list li[data-voice-name]::after{position:absolute;right:3px;top:2px;font-size:10px}}

@@ -1,0 +1,8 @@
+/* Ten colors with generous, consistent touch targets on narrow screens. */
+@media(max-width:750px){
+ body[data-game=coloring] .paint-game{grid-template-rows:auto minmax(0,1fr) auto}
+ body[data-game=coloring] .paint-palette{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:8px;height:auto;align-content:center}
+ body[data-game=coloring] .paint-palette button{width:100%;min-width:0;min-height:48px;padding:3px;box-sizing:border-box}
+ body[data-game=coloring] .paint-palette button span{width:28px;height:28px}
+ body[data-game=coloring] .paint-palette button small{font-size:10px}
+}

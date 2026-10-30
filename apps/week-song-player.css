@@ -1,0 +1,11 @@
+/* Retain Month 8's weekly-song card and coral play control. */
+:root{--song-ink:#173a61;--song-blue:#35a9df;--song-gold:#ffc844;--song-coral:#ff735f}
+.week-song-shell{box-sizing:border-box;width:min(1080px,94vw);margin:0 auto;padding:18px 0 54px;color:var(--song-ink)}
+.week-song-heading{text-align:center}.week-song-heading h1{margin:0;color:var(--song-ink);font-size:clamp(2rem,5vw,3.8rem);line-height:1;text-shadow:0 4px 0 #fff}.week-song-heading p{margin:9px 0 18px;color:#39708c;font-size:clamp(1rem,2.2vw,1.35rem);font-weight:900}
+.week-song-card{box-sizing:border-box;padding:clamp(12px,2vw,22px);border:6px solid #fff;border-radius:34px;background:linear-gradient(155deg,#fff,#fff8d8);box-shadow:0 11px 0 #48a8c7,0 20px 35px #21536f2d}
+.week-song-video-shell{--song-media-ratio:1.777777778;position:relative;box-sizing:border-box;width:min(100%,calc(68svh * var(--song-media-ratio)));margin-inline:auto;overflow:hidden;border:7px solid #183a60;border-radius:25px;background:#080f18;box-shadow:0 8px 0 #102a47}
+.week-song-video{display:block;width:100%;height:auto;aspect-ratio:auto 16/9;object-fit:contain;background:#080f18}
+.week-song-video:fullscreen,.week-song-video:-webkit-full-screen{width:100vw;height:100vh;max-height:none;aspect-ratio:auto;object-fit:contain;background:#000}
+.week-song-play{position:absolute;left:50%;top:50%;display:grid;place-items:center;width:clamp(72px,11vw,112px);height:clamp(72px,11vw,112px);padding:0;transform:translate(-50%,-50%);border:7px solid #fff;border-radius:50%;color:#fff;background:linear-gradient(180deg,#ff846d,#ef5548);box-shadow:0 9px 0 #b83d37,0 16px 24px #132a3c55;cursor:pointer;font:inherit;font-size:clamp(2rem,5vw,3.6rem)}
+.week-song-play[hidden]{display:none}.week-song-play:focus-visible{outline:4px solid #176ac2;outline-offset:5px}.week-song-note{margin:18px 0 2px;text-align:center;color:#47758b;font-size:1.08rem;font-weight:900}
+@media(max-width:620px){.week-song-shell{width:min(96vw,1080px);padding-top:10px}.week-song-card{padding:9px;border-width:4px;border-radius:24px}.week-song-video-shell{border-width:4px;border-radius:18px}.week-song-heading p{margin-bottom:12px}}

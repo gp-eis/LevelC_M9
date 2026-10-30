@@ -1,0 +1,38 @@
+
+[data-game-category="wonder-world"]{--category-top:#ffe49a;--category-bottom:#fff8df;--category-edge:#e3a629;--category-ink:#705015}
+[data-game-category="phonics"]{--category-top:#d8c3ff;--category-bottom:#f4edff;--category-edge:#9d77db;--category-ink:#543680}
+[data-game-category="puzzle-park"]{--category-top:#9ee5cb;--category-bottom:#e9fff4;--category-edge:#45ad86;--category-ink:#22654d}
+body[data-game-category]{background:linear-gradient(180deg,var(--category-top),var(--category-bottom)) fixed!important;min-height:100svh}
+body[data-game-category]::before,body[data-game-category]::after{display:none!important}
+body[data-game-category] .game-list-title,body[data-game-category] .c-heading h1{color:var(--category-ink)}
+.category-worlds .game-nav-card[data-game-category]{background:linear-gradient(155deg,var(--category-bottom),var(--category-top));border:4px solid #fff;border-top:9px solid var(--category-edge);box-shadow:0 8px 0 var(--category-edge),0 14px 20px #31557820;color:var(--category-ink)}
+.category-worlds .game-nav-card[data-game-category]:hover{transform:translateY(-4px)}
+.category-worlds .game-nav-card[data-game-category]:focus-visible{outline:4px solid var(--category-ink);outline-offset:5px}
+.gp-navigation__links{display:flex!important;gap:8px!important;align-items:center}
+.gp-navigation__links>a{display:inline-flex!important;align-items:center;justify-content:center;gap:6px;min-height:44px;box-sizing:border-box}
+.gp-navigation__section{width:48px!important;min-width:48px!important;padding:8px!important}
+.gp-navigation__section>span:not(.gp-navigation__icon){display:none!important}
+.game-list-shell{box-sizing:border-box;padding-top:16px!important}
+.game-list-header{margin-top:8px!important}
+.category-worlds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:24px}
+.category-worlds .game-nav-card{min-width:0;min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;gap:12px}
+.category-art{width:180px;height:180px;object-fit:contain;filter:drop-shadow(0 8px 5px #31557822)}
+.category-worlds .game-nav-card__label{font-size:1.5rem}
+.game-list-title__icon{object-fit:contain}
+/* One motion rule for every category, overriding the old phonics exception. */
+.game-list-shell .game-list-title__icon{animation:category-heading-float 3s ease-in-out infinite!important}
+@keyframes category-heading-float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+@media(prefers-reduced-motion:reduce){.game-list-shell .game-list-title__icon{animation:none!important}}
+.game-list-shell .game-list-title{font-size:2.4rem}
+.game-list-shell .game-list-title__icon{width:62px;height:62px;margin-right:0;flex:0 0 auto}
+.game-list-shell .game-card-grid{margin-top:28px}
+@media(max-width:600px){
+ .game-list-shell .game-list-title{font-size:clamp(1.5rem,7vw,2rem);gap:10px}
+ .game-list-shell .game-list-title__icon{width:52px;height:52px}
+ .game-list-shell .game-card-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .game-list-shell .game-card-grid .game-nav-card{min-width:0;padding:14px 8px}
+ .game-list-shell .game-card-grid .game-nav-card__icon{max-width:85px}
+ .game-list-shell .game-card-grid .game-nav-card__label{font-size:1rem}
+ .game-list-shell .game-card-grid .game-nav-card__hint{font-size:.82rem}
+}
+@media(max-width:720px){.gp-navigation__links>a{width:44px!important;min-width:44px!important;height:44px;padding:8px!important}.gp-navigation__links>a>span:not(.gp-navigation__icon){display:none!important}.category-worlds{grid-template-columns:1fr;gap:18px;margin-top:20px}.category-worlds .game-nav-card{min-height:160px;display:grid;grid-template-columns:110px 1fr;column-gap:14px;text-align:left;padding:16px}.category-art{width:110px;height:110px;grid-row:1/3}.category-worlds .game-nav-card__label{align-self:end;font-size:1.3rem}.category-worlds .category-hint{align-self:start}.game-list-shell{padding:16px 14px 36px!important}}

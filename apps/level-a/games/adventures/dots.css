@@ -1,0 +1,15 @@
+.in-game[data-game=dots] #activity{background:#e5eff8}
+.in-game[data-game=dots] .stage{padding:0;overflow:hidden;background:#c4e5f4}
+.dots-game{display:grid;grid-template-rows:48px minmax(0,1fr) 36px;height:100%;width:100%;min-height:0}
+.dots-modes{display:flex;align-items:center;justify-content:center;gap:9px;background:#fff7e5;padding:5px;font-size:13px;color:#5b4b7a}
+.dots-modes button{border:2px solid transparent;border-radius:13px;background:white;color:#5b4b7a;padding:7px 12px;font:inherit;font-weight:bold;cursor:pointer}.dots-modes button[aria-pressed=true]{border-color:#8061a3;background:#f0e6ff}
+.dots-board{position:relative;height:100%;aspect-ratio:3/4;max-width:100%;min-height:0;justify-self:center}
+.dots-board>img,.dots-board>svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;user-select:none}
+.number-dot{position:absolute;transform:translate(-50%,-50%);border:2px solid #685192;border-radius:50%;width:clamp(28px,3vw,44px);height:clamp(28px,3vw,44px);padding:0;background:#fffef7;color:#493c63;font:bold clamp(14px,1.7vw,22px) Arial;cursor:pointer;touch-action:manipulation;z-index:1}
+.number-dot.next-dot{box-shadow:0 0 0 4px #ffdb76;background:#fff2b8}.number-dot.joined{background:#796095;color:white}.number-dot.finished{opacity:.65;box-shadow:none}
+.dots-error{display:none;position:absolute;transform:translate(-50%,-50%);z-index:3;color:#d14943;background:#fff7ee;border-radius:50%;font:bold 32px Arial;width:40px;height:40px;text-align:center;pointer-events:none}.dots-error.show{display:block;animation:dot-wiggle .25s ease-in-out 2}
+.dots-hint{text-align:center;padding:5px;background:#fff7e5;color:#5b4b7a;font-size:17px}.kite-reveal{transition:opacity .4s}
+@keyframes dot-wiggle{0%,100%{margin-left:0}25%{margin-left:-4px}75%{margin-left:4px}}
+@media(prefers-reduced-motion:reduce){.dots-error.show{animation:none}.kite-reveal{transition:none}}
+@media(max-width:600px){.dots-modes{gap:5px;font-size:12px}.dots-modes button{padding:7px}.number-dot{width:29px;height:29px;font-size:15px}}
+.number-dot{min-height:0;min-width:0;line-height:1;display:grid;place-items:center}
