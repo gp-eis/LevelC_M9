@@ -279,7 +279,8 @@
       active = false; invalidate();
       if (returnFocus?.isConnected) returnFocus.focus({preventScroll: true});
     });
-    modal.addEventListener('click', event => { if (event.target === modal) close(); });
+    // Children may tap as a question changes shape. Keep outside taps harmless;
+    // the large X and native Escape/cancel remain explicit ways to leave.
     hearQuestion.addEventListener('click', () => {
       if (!current(epoch)) return;
       const stamp = invalidate();
