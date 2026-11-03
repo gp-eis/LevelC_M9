@@ -21,7 +21,8 @@ if (main && level) {
   video.dataset.week = String(week);
   // The initial HTML has no source, so a different week's video never loads first.
   video.poster = poster.href;
-  video.src = source.href;
+  video.setAttribute('data-stream-lesson', 'week-song');
+  window.GPStreamMedia.setVideoSource(video, source.href);
 
   const sync = () => {play.hidden = !video.paused && !video.ended;};
   const size = () => {

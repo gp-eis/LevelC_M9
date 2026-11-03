@@ -5,6 +5,7 @@
   const states = new WeakMap();
   const videos = new Set();
   const mediaType = 'application/vnd.apple.mpegurl';
+  let pageInactive = false;
 
   function sourceKeys(originalUrl) {
     try {
@@ -59,18 +60,31 @@
       state.primeBufferSettings = null;
     }
   }
+  function bufferFirstFrame(state) {
+    if (!state.primeBufferSettings) {
+      const config = state.hls.config;
+      state.primeBufferSettings = {maxBufferLength:config.maxBufferLength,
+        maxMaxBufferLength:config.maxMaxBufferLength,maxBufferSize:config.maxBufferSize};
+    }
+    Object.assign(state.hls.config, {maxBufferLength:1,maxMaxBufferLength:1,maxBufferSize:0});
+  }
+  function bufferedAt(video, position) {
+    try {
+      for (let index = 0; index < video.buffered.length; index++) {
+        const end = video.buffered.end(index);
+        if (position >= video.buffered.start(index) &&
+            (position < end || (Number.isFinite(video.duration) && Math.abs(position-video.duration)<0.05 && Math.abs(end-video.duration)<0.05))) return true;
+      }
+    } catch (_) { /* No buffered media yet. */ }
+    return false;
+  }
   function beginPrime(state) {
-    if (!state || state.closed || state.failed || state.started || !state.primeRequested || document.hidden) return;
+    if (!state || state.closed || state.failed || state.started || !state.primeRequested || document.hidden || pageInactive) return;
     clearTimeout(state.loadTimer);
     state.loadTimer = setTimeout(() => failed(state, 'first-frame-timeout'), 20000);
     if (state.mode === 'hls' && state.manifestReady) {
       state.video.preload = 'auto';
-      if (!state.primeBufferSettings) {
-        const config = state.hls.config;
-        state.primeBufferSettings = {maxBufferLength:config.maxBufferLength,
-          maxMaxBufferLength:config.maxMaxBufferLength,maxBufferSize:config.maxBufferSize};
-      }
-      Object.assign(state.hls.config, {maxBufferLength:1,maxMaxBufferLength:1,maxBufferSize:0});
+      bufferFirstFrame(state);
       state.hls.startLoad(0);
     }
     else if (state.mode === 'native-hls') {
@@ -108,7 +122,7 @@
     const retry = document.createElement('button');
     retry.type = 'button'; retry.textContent = 'Try again';
     retry.addEventListener('click', () => {
-      if (document.hidden || document.querySelector('[data-m9-reading-quiz]')?.open) return;
+      if (document.hidden || pageInactive || document.querySelector('[data-m9-reading-quiz]')?.open) return;
       setVideoSource(state.video, state.original, true);
       state.video.play().catch(() => { /* A further tap can use native controls. */ });
     });
@@ -127,7 +141,7 @@
     const mapped = mappingFor(original);
     const state = {video, original, mode:'direct', hls:null, listeners:[], loadTimer:0,
       notice:null, closed:false, failed:false, started:false, primed:false,
-      primeRequested:false, manifestReady:false, progressTime:0};
+      primeRequested:false, manifestReady:false, progressTime:0, seekPosition:null, seekPreview:false, suppressSeek:false, skipPauseSeek:false};
     states.set(video, state); videos.add(video);
     if (!mapped) {
       if (video.getAttribute('data-stream-lesson') !== null) {
@@ -147,17 +161,47 @@
     video.preload = 'none';
     video.dataset.gpStreamKey = mapped.key;
     video.dataset.gpStreamState = 'ready';
-    const startTimer = () => {
+    const startTimer = (reason = 'start-timeout') => {
       clearTimeout(state.loadTimer);
-      state.loadTimer = setTimeout(() => failed(state, 'start-timeout'), 20000);
+      state.loadTimer = setTimeout(() => failed(state, reason), 20000);
+    };
+    const requestSeekFrame = () => {
+      if (!state.hls || state.closed || state.failed || state.suppressSeek || document.hidden || pageInactive ||
+          document.querySelector('[data-m9-reading-quiz]')?.open || !Number.isFinite(video.currentTime) ||
+          bufferedAt(video, video.currentTime) || state.seekPosition === video.currentTime) return;
+      state.seekPosition = video.currentTime;
+      state.primeRequested = false;
+      state.seekPreview = video.paused;
+      if (state.seekPreview) {
+        video.preload = 'auto';
+        bufferFirstFrame(state);
+        video.dataset.gpStreamState = 'seeking';
+      } else restoreBufferSettings(state);
+      // A dormant loader must be explicitly resumed after Math priming/pause.
+      // Paused scrubbing requests only its selected frame and never calls play.
+      const loadPosition = Number.isFinite(video.duration) ? Math.min(video.currentTime, Math.max(0,video.duration-0.05)) : video.currentTime;
+      state.hls.startLoad(loadPosition);
+      if (!state.loadTimer) startTimer('seek-timeout');
+    };
+    const finishSeekPreview = () => {
+      if (state.closed || state.failed || !state.seekPreview || !video.paused || video.readyState < 2 || !bufferedAt(video, video.currentTime)) return;
+      state.seekPreview = false;
+      state.seekPosition = null;
+      clearTimeout(state.loadTimer); state.loadTimer = 0;
+      state.hls?.stopLoad();
+      restoreBufferSettings(state);
+      video.preload = 'none';
+      video.dataset.gpStreamState = 'paused';
     };
     listen(state, 'play', () => {
-      if (document.hidden || document.querySelector('[data-m9-reading-quiz]')?.open) {
+      if (document.hidden || pageInactive || document.querySelector('[data-m9-reading-quiz]')?.open) {
         video.pause(); return;
       }
       if (state.failed) return;
       state.started = true;
       state.progressTime = video.currentTime;
+      state.seekPosition = null;
+      state.seekPreview = false;
       state.primeRequested = false;
       restoreBufferSettings(state);
       video.dataset.gpStreamState = 'loading';
@@ -166,7 +210,7 @@
       state.hls?.startLoad(Number.isFinite(video.currentTime) && video.currentTime > 0 ? video.currentTime : -1);
     });
     listen(state, 'playing', () => {
-      if (document.hidden || document.querySelector('[data-m9-reading-quiz]')?.open) {
+      if (document.hidden || pageInactive || document.querySelector('[data-m9-reading-quiz]')?.open) {
         video.pause(); return;
       }
       clearTimeout(state.loadTimer); state.loadTimer = 0;
@@ -174,11 +218,16 @@
     });
     for (const name of ['waiting', 'stalled', 'seeking']) {
       listen(state, name, () => {
-        if (name === 'seeking' && video.readyState >= 3) return;
+        if (name === 'seeking') {
+          if (bufferedAt(video, video.currentTime) && video.readyState >= 3) return;
+          requestSeekFrame();
+        }
         if (state.started && !state.failed && !video.paused && !video.ended && !state.loadTimer) startTimer();
       });
     }
     listen(state, 'seeked', () => {
+      finishSeekPreview();
+      if (!state.seekPreview) state.seekPosition = null;
       state.progressTime = video.currentTime;
       if (!video.paused && video.readyState >= 3) {
         clearTimeout(state.loadTimer); state.loadTimer = 0;
@@ -191,6 +240,8 @@
       state.progressTime = video.currentTime;
     });
     listen(state, 'loadeddata', () => {
+      if (state.closed || state.failed) return;
+      finishSeekPreview();
       if (state.primeRequested && !state.started) {
         clearTimeout(state.loadTimer); state.loadTimer = 0;
         state.primeRequested = false;
@@ -202,9 +253,13 @@
       }
     });
     listen(state, 'pause', () => {
+      const cancelled = state.suppressSeek || state.skipPauseSeek;
+      state.skipPauseSeek = false;
+      state.seekPosition = null;
       clearTimeout(state.loadTimer); state.loadTimer = 0;
       state.hls?.stopLoad();
       if (!state.failed) video.dataset.gpStreamState = 'paused';
+      if (video.seeking && !cancelled) requestSeekFrame();
     });
     listen(state, 'ended', () => {
       clearTimeout(state.loadTimer); state.loadTimer = 0;
@@ -251,12 +306,24 @@
       const state = states.get(video);
       clearTimeout(state?.loadTimer);
       state?.hls?.stopLoad();
+      if (state) {
+        state.loadTimer = 0;
+        state.seekPosition = null; state.seekPreview = false;
+        restoreBufferSettings(state);
+        state.suppressSeek = true;
+        state.skipPauseSeek = !video.paused;
+      }
       try { video.pause(); } catch (_) { /* Detached video. */ }
+      if (state) state.suppressSeek = false;
     });
   }
   window.GPStreamMedia = Object.freeze({setVideoSource, getOriginalSource, isStreamVideo,
     destroyVideo, primeVideo, pauseAll, scan});
-  window.addEventListener('pagehide', pauseAll);
+  window.addEventListener('pagehide', () => { pageInactive = true; pauseAll(); });
+  window.addEventListener('pageshow', () => {
+    pageInactive = false;
+    videos.forEach(video => { const state = states.get(video); if (state?.primeRequested) beginPrime(state); });
+  });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) pauseAll();
     else videos.forEach(video => { const state = states.get(video); if (state?.primeRequested) beginPrime(state); });
@@ -264,11 +331,12 @@
   const start = () => {
     scan();
     new MutationObserver(records => {
-      records.forEach(record => record.addedNodes.forEach(node => {
+      if (document.querySelector('[data-m9-reading-quiz]')?.open) pauseAll();
+      records.forEach(record => record.addedNodes?.forEach(node => {
         if (node.nodeType === 1) scan(node);
       }));
       videos.forEach(video => { if (!video.isConnected) destroyVideo(video); });
-    }).observe(document.documentElement, {childList:true, subtree:true});
+    }).observe(document.documentElement, {childList:true, subtree:true, attributes:true, attributeFilter:['open']});
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once:true});
   else start();

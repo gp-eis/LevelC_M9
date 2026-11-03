@@ -177,6 +177,11 @@ window.GPStreamMediaRegistry={
       "sourceSha256": "94833df404bae92c321065c14e56a344359caa5cd0ddd74e3c2ebb24566148e5",
       "ready": true
     },
+    "apps/level-c/assets/media/literacy/opening-videos/week-3-korean.mp4": {
+      "uid": "13df7b16cf08a39a5459995b1b31422e",
+      "sourceSha256": "c4e797bbae949f873b7a57026b4fad198a8c3477180f2d5b057644346ce1bae2",
+      "ready": true
+    },
     "apps/level-c/assets/media/literacy/opening-videos/week-4-korean.mp4": {
       "uid": "eac69962cc8ad3ef6ceef3352730268e",
       "sourceSha256": "2da6cd247a3967adb3035bce179f677014a258acebbd204dabecd146ebf96352",
