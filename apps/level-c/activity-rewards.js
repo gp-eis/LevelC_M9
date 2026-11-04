@@ -14,17 +14,21 @@
     siblings.forEach(({element})=>{element.inert=true;});
     document.body.style.overflow='hidden';
     const video = modal.querySelector('video');
-    video.src = clipURL;
+    video.setAttribute('data-original-source', clipURL);
+    video.setAttribute('data-stream-lesson', 'activity-reward');
     const play = () => {
       video.hidden=false; modal.querySelector('.reward-fallback').hidden=true;
+      if (!window.GPStreamMedia) {video.hidden=true;modal.querySelector('.reward-fallback').hidden=false;return;}
+      window.GPStreamMedia.setVideoSource(video, clipURL);
       video.currentTime=0;
       video.play().catch(()=>{video.hidden=true;modal.querySelector('.reward-fallback').hidden=false;});
     };
     const close = () => {
-      video.pause(); modal.remove(); document.body.style.overflow=oldOverflow;
+      video.pause(); window.GPStreamMedia?.destroyVideo(video); modal.remove(); document.body.style.overflow=oldOverflow;
       siblings.forEach(({element,inert})=>{element.inert=inert;});
       focusBefore?.focus({preventScroll:true});
     };
+    video.addEventListener('playing',()=>{video.hidden=false;modal.querySelector('.reward-fallback').hidden=true;});
     video.onerror=()=>{video.hidden=true;modal.querySelector('.reward-fallback').hidden=false;};
     modal.querySelector('.reward-close').onclick=close;
     modal.querySelector('.reward-done').onclick=close;

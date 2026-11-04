@@ -24,7 +24,8 @@
     const video = el('video', 'm9-tpr-video');
     video.controls = false;
     video.playsInline = true;
-    video.preload = 'metadata';
+    video.preload = 'none';
+    video.setAttribute('data-stream-lesson', 'tpr');
     video.tabIndex = 0;
     video.setAttribute('aria-label', 'GP Friends TPR action video');
     const label = el('h3', 'm9-tpr-label');
@@ -69,7 +70,9 @@
       pause(); stopVoice();
       index = (n + cards.length) % cards.length;
       const card = cards[index];
-      video.src = card.src;
+      video.setAttribute('data-original-source', card.src);
+      if (window.GPStreamMedia) window.GPStreamMedia.setVideoSource(video, card.src);
+      video.currentTime = 0;
       video.poster = card.poster || '';
       video.dataset.tprId = card.id;
       video.setAttribute('aria-label', `${card.label}. ${card.sentence}`);
